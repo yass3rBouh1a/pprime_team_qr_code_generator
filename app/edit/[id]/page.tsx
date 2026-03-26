@@ -6,7 +6,7 @@ import MemberForm from "@/components/MemberForm";
 
 export default async function EditPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const member = getMember(id);
+  const member = await getMember(id);
   if (!member) notFound();
 
   return (
