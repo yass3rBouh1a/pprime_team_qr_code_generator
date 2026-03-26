@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { UserPlus, Users, Settings, Globe, X, Check } from "lucide-react";
+import { UserPlus, Users, Settings, Globe, X, Check, Search } from "lucide-react";
 import { TeamMember } from "@/lib/types";
 import MemberCard from "./MemberCard";
 import { getSettings, saveSettings, AppSettings } from "@/lib/settings";
@@ -36,25 +36,28 @@ export default function TeamList() {
   return (
     <div className="min-h-screen bg-[#fcfcfd]">
       {/* Header */}
-      <header className="glass sticky top-0 z-30 shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
-          <div className="flex items-center gap-2.5 group cursor-pointer" onClick={() => (window.location.href = "/")}>
-            <div className="w-9 h-9 bg-zinc-900 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-              <Users size={18} className="text-white" />
+      <header className="glass sticky top-0 z-30 border-b border-zinc-100/50 shadow-sm shadow-zinc-100/10">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 py-5 flex items-center justify-between gap-8">
+          <div className="flex items-center gap-3.5 group cursor-pointer" onClick={() => (window.location.href = "/")}>
+            <div className="w-11 h-11 bg-zinc-900 rounded-2xl flex items-center justify-center shadow-xl group-hover:scale-105 transition-transform duration-300">
+              <Users size={22} className="text-white" />
             </div>
-            <span className="text-xl font-bold text-zinc-900 tracking-tight">teamix</span>
+            <div className="hidden sm:block">
+              <h1 className="text-xl font-black text-zinc-900 tracking-tighter leading-none">TEAMIX</h1>
+              <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.2em] mt-1.5">Directory Management</p>
+            </div>
           </div>
           
-          <div className="hidden sm:flex flex-1 max-w-md relative group">
-            <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-zinc-400 group-focus-within:text-zinc-900 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <div className="hidden md:flex flex-1 max-w-xl relative group">
+            <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-zinc-400 group-focus-within:text-zinc-900 transition-colors">
+              <Search size={18} strokeWidth={2.5} />
             </div>
             <input
               type="search"
-              placeholder="Rechercher un membre…"
+              placeholder="Rechercher un membre, un poste ou une entreprise..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-zinc-100/50 border-transparent border-zinc-200 focus:bg-white focus:border-zinc-300 focus:ring-4 focus:ring-zinc-100 rounded-xl text-sm transition-all outline-none"
+              className="w-full pl-12 pr-5 py-3.5 bg-zinc-100/50 border border-transparent focus:bg-white focus:border-zinc-200 focus:ring-8 focus:ring-zinc-50 rounded-[1.25rem] text-sm transition-all outline-none"
             />
           </div>
 
@@ -94,47 +97,47 @@ export default function TeamList() {
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-6 py-10">
+      <main className="max-w-7xl mx-auto px-6 sm:px-10 py-16">
         {loading ? (
-          <div className="flex flex-col items-center justify-center py-24 text-zinc-400 gap-3">
-            <div className="w-10 h-10 border-3 border-zinc-200 border-t-zinc-900 rounded-full animate-spin" />
-            <span className="text-sm font-medium">Chargement des membres…</span>
+          <div className="flex flex-col items-center justify-center py-32 text-zinc-400 gap-4">
+            <div className="w-12 h-12 border-4 border-zinc-100 border-t-zinc-900 rounded-full animate-spin" />
+            <span className="text-sm font-bold tracking-widest uppercase">Initialisation...</span>
           </div>
         ) : filtered.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-24 gap-6 text-center">
-            <div className="w-20 h-20 bg-zinc-100 rounded-3xl flex items-center justify-center shadow-inner">
-              <Users size={32} className="text-zinc-400" />
+          <div className="flex flex-col items-center justify-center py-32 gap-8 text-center bg-zinc-50/50 rounded-[3rem] border border-dashed border-zinc-200">
+            <div className="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shadow-xl border border-zinc-100">
+              <Users size={40} className="text-zinc-300" />
             </div>
-            <div className="space-y-1">
-              <h3 className="text-lg font-semibold text-zinc-900">
-                {search ? "Aucun résultat" : "Votre équipe est vide"}
+            <div className="space-y-2">
+              <h3 className="text-2xl font-black text-zinc-900 tracking-tight">
+                {search ? "Aucun profil trouvé" : "Votre répertoire est vide"}
               </h3>
-              <p className="text-sm text-zinc-500 max-w-xs mx-auto">
+              <p className="text-sm text-zinc-500 max-w-sm mx-auto font-medium">
                 {search 
-                  ? `Nous n'avons trouvé aucun membre correspondant à "${search}".` 
-                  : "Commencez par ajouter des membres pour générer leurs cartes de visite."}
+                  ? `Aucun membre ne correspond à votre recherche "${search}". Réessayez avec d'autres termes.` 
+                  : "Commencez par ajouter des membres de votre équipe pour générer leurs cartes de visite intelligentes."}
               </p>
             </div>
             {!search && (
               <Link
                 href="/add"
-                className="px-6 py-2.5 bg-zinc-900 text-white rounded-xl text-sm font-semibold hover:bg-zinc-800 transition-all shadow-sm"
+                className="px-8 py-4 bg-zinc-900 text-white rounded-2xl text-sm font-bold hover:bg-zinc-800 transition-all shadow-xl shadow-zinc-200 hover:shadow-zinc-300 active:scale-95"
               >
-                Ajouter votre premier membre
+                Ajouter un premier profil
               </Link>
             )}
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-8">
             <div className="flex items-center justify-between">
-              <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">
-                {filtered.length} membre{filtered.length !== 1 ? "s" : ""}
+              <p className="text-xs font-black text-zinc-400 uppercase tracking-[0.2em]">
+                {filtered.length} profil{filtered.length !== 1 ? "s" : ""} enregistré{filtered.length !== 1 ? "s" : ""}
               </p>
             </div>
             
             <motion.div 
               layout
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8"
             >
               <AnimatePresence mode="popLayout">
                 {filtered.map((m) => (

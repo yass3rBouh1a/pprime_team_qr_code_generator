@@ -30,80 +30,82 @@ export default function MemberCard({ member, onDeleted }: Props) {
   return (
     <>
       <motion.div 
-      whileHover={{ y: -4, scale: 1.01 }}
-      className="group relative bg-white rounded-[2rem] border border-zinc-100 shadow-sm hover:shadow-xl hover:shadow-zinc-200/50 transition-all duration-500 overflow-hidden flex flex-col"
-    >
+        whileHover={{ y: -6, scale: 1.01 }}
+        className="group relative bg-white rounded-[2.5rem] border border-zinc-100 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.02)] hover:shadow-[0_40px_80px_-16px_rgba(0,0,0,0.08)] transition-all duration-700 overflow-hidden flex flex-col h-full"
+      >
         {/* Animated Background Highlight */}
-        <div className="absolute -top-24 -right-24 w-48 h-48 bg-zinc-50 rounded-full blur-3xl group-hover:bg-indigo-50/50 transition-colors duration-700" />
+        <div className="absolute -top-32 -right-32 w-80 h-80 bg-zinc-50 rounded-full blur-3xl group-hover:bg-indigo-50/50 transition-colors duration-1000" />
         
-        <div className="relative flex flex-col items-center text-center flex-1">
+        <div className="relative p-10 flex flex-col items-center text-center flex-1 z-10">
           {/* Avatar Area */}
-          <div className="relative mb-5">
+          <div className="relative mb-8">
             <div 
-              className="w-24 h-24 rounded-[2rem] flex items-center justify-center text-white text-3xl font-bold shadow-2xl relative z-10 overflow-hidden ring-4 ring-white"
-              style={{ backgroundColor: member.avatarColor }}
+              className="w-32 h-32 rounded-[2.75rem] flex items-center justify-center text-white text-4xl font-black shadow-2xl relative z-10 overflow-hidden ring-[12px] ring-white"
+              style={{ backgroundColor: member.avatarColor || "#18181b" }}
             >
               {member.image ? (
                 <img src={member.image} alt={member.firstName} className="w-full h-full object-cover" />
               ) : (
                 initials
               )}
+              <div className="absolute inset-0 bg-gradient-to-tr from-black/20 to-transparent" />
             </div>
-            <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-white rounded-xl shadow-lg flex items-center justify-center z-20 border border-zinc-50">
-              <Building2 size={14} className="text-zinc-400" />
+            <div className="absolute -bottom-1 -right-1 w-11 h-11 bg-white rounded-2xl shadow-xl flex items-center justify-center z-20 border border-zinc-50 translate-x-1 translate-y-1">
+              <Building2 size={18} className="text-zinc-400" />
             </div>
           </div>
 
-          <div className="space-y-1 mb-6">
-            <h3 className="text-xl font-extrabold text-zinc-900 tracking-tight group-hover:text-indigo-950 transition-colors">
+          <div className="space-y-1.5 mb-8">
+            <h3 className="text-2xl font-black text-zinc-900 tracking-tight leading-tight group-hover:text-indigo-600 transition-colors">
               {member.firstName} {member.lastName}
             </h3>
-            <p className="text-sm font-semibold text-indigo-600/90 tracking-wide uppercase">
+            <p className="text-xs font-bold text-indigo-500 tracking-[0.25em] uppercase">
               {member.jobTitle}
             </p>
           </div>
 
-          <div className="w-full space-y-2.5 mb-8">
+          <div className="w-full space-y-3.5 mb-2">
             {member.email && (
-              <div className="flex items-center justify-center gap-2.5 text-zinc-500 text-sm bg-zinc-50/50 py-2 px-4 rounded-xl border border-transparent hover:border-zinc-100 hover:bg-white transition-all">
-                <Mail size={14} className="text-zinc-400" />
-                <span className="truncate font-medium">{member.email}</span>
+              <div className="flex items-center justify-center gap-3.5 text-zinc-500 text-sm bg-zinc-50/50 py-3.5 px-6 rounded-2xl border border-transparent hover:border-zinc-100 hover:bg-white transition-all">
+                <Mail size={16} className="text-zinc-400" />
+                <span className="truncate font-bold tracking-tight text-zinc-600">{member.email}</span>
               </div>
             )}
             {member.phone && (
-              <div className="flex items-center justify-center gap-2.5 text-zinc-500 text-sm bg-zinc-50/50 py-2 px-4 rounded-xl border border-transparent hover:border-zinc-100 hover:bg-white transition-all">
-                <Phone size={14} className="text-zinc-400" />
-                <span className="font-medium">{member.phone}</span>
+              <div className="flex items-center justify-center gap-3.5 text-zinc-500 text-sm bg-zinc-50/50 py-3.5 px-6 rounded-2xl border border-transparent hover:border-zinc-100 hover:bg-white transition-all">
+                <Phone size={16} className="text-zinc-400" />
+                <span className="font-bold tracking-tight text-zinc-600">{member.phone}</span>
               </div>
             )}
           </div>
         </div>
 
-        <div className="relative z-10 flex items-center gap-3">
-          <button
-            onClick={() => setShowQR(true)}
-            className="flex-1 flex items-center justify-center gap-2.5 py-3 bg-zinc-900 text-white rounded-2xl text-sm font-bold hover:bg-zinc-800 shadow-lg shadow-zinc-200 hover:shadow-zinc-300 active:scale-[0.98] transition-all"
-          >
-            <QrCode size={18} />
-            QR Code
-          </button>
-          
-          <div className="flex items-center bg-zinc-100 p-1 rounded-2xl">
-            <Link
-              href={`/edit/${member.id}`}
-              className="p-2.5 text-zinc-500 hover:text-zinc-900 hover:bg-white rounded-xl transition-all shadow-none hover:shadow-sm"
-              title="Modifier"
-            >
-              <Edit2 size={18} />
-            </Link>
+        <div className="relative z-20 p-8 pt-0 mt-auto">
+          <div className="flex items-center gap-3 bg-zinc-50/80 backdrop-blur-sm p-2.5 rounded-[2rem] border border-zinc-100/50 group-hover:bg-white group-hover:border-zinc-200 transition-all duration-500">
             <button
-              onClick={handleDelete}
-              disabled={deleting}
-              className="p-2.5 text-zinc-400 hover:text-red-600 hover:bg-white rounded-xl transition-all shadow-none hover:shadow-sm disabled:opacity-50"
-              title="Supprimer"
+              onClick={() => setShowQR(true)}
+              className="flex-1 flex items-center justify-center gap-3 py-4 bg-zinc-900 text-white rounded-2xl text-[11px] font-black tracking-[0.15em] uppercase hover:bg-zinc-800 shadow-xl shadow-zinc-200 hover:shadow-zinc-300 active:scale-[0.98] transition-all"
             >
-              <Trash2 size={18} />
+              <QrCode size={18} />
+              Générer QR
             </button>
+            <div className="flex items-center pr-1">
+              <Link
+                href={`/edit/${member.id}`}
+                className="p-3 text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 rounded-2xl transition-all"
+                title="Modifier"
+              >
+                <Edit2 size={18} />
+              </Link>
+              <button
+                onClick={handleDelete}
+                disabled={deleting}
+                className="p-3 text-zinc-300 hover:text-red-500 hover:bg-red-50 rounded-2xl transition-all disabled:opacity-50"
+                title="Supprimer"
+              >
+                <Trash2 size={18} />
+              </button>
+            </div>
           </div>
         </div>
       </motion.div>
