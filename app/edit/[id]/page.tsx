@@ -10,20 +10,22 @@ export default async function EditPage({ params }: { params: Promise<{ id: strin
   if (!member) notFound();
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-lg mx-auto px-4 py-8">
+    <div className="min-h-screen bg-[#fcfcfd]">
+      <div className="max-w-2xl mx-auto px-6 py-12">
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 mb-6"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-400 hover:text-zinc-900 mb-10 transition-colors group"
         >
-          <ArrowLeft size={15} />
-          Back to team
+          <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+          Retour à l'équipe
         </Link>
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-          <h1 className="text-xl font-bold text-gray-900 mb-1">Edit Member</h1>
-          <p className="text-sm text-gray-500 mb-6">
-            Update {member.firstName}&apos;s contact information.
-          </p>
+        <div className="bg-white rounded-[2.5rem] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.05)] border border-zinc-100 p-8 sm:p-12">
+          <div className="mb-10">
+            <h1 className="text-3xl font-extrabold text-zinc-900 tracking-tight mb-2">Modifier le membre</h1>
+            <p className="text-zinc-500 font-medium">
+              Mettre à jour les coordonnées de {member.firstName}.
+            </p>
+          </div>
           <MemberForm initial={member} memberId={member.id} />
         </div>
       </div>

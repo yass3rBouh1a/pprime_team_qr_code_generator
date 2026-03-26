@@ -11,5 +11,8 @@ export interface TeamMember {
   address?: string;
   notes?: string;
   avatarColor: string;
+  image?: string; // Base64
+  qrLogo?: string; // Base64
+  showCornerLogos?: boolean;
   createdAt: string;
 }

@@ -23,52 +23,60 @@ export default function ContactPage({ member }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-sm">
-        {/* Card */}
-        <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
-          {/* Banner */}
-          <div
-            className="h-24 w-full"
-            style={{
-              background: `linear-gradient(135deg, ${member.avatarColor}cc, ${member.avatarColor})`,
-            }}
-          />
+    <div className="min-h-screen bg-[#fcfcfd] flex items-center justify-center p-6 sm:p-12 relative overflow-hidden">
+      {/* Decorative Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-1/2 bg-zinc-900 -skew-y-6 -translate-y-1/2" />
+      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-indigo-50 rounded-full blur-3xl opacity-50" />
+      <div className="absolute top-1/2 -left-24 w-64 h-64 bg-zinc-100 rounded-full blur-3xl opacity-50" />
 
-          {/* Avatar */}
-          <div className="px-6 pb-6">
-            <div className="-mt-10 mb-4 flex justify-between items-end">
-              <div
-                className="w-20 h-20 rounded-2xl border-4 border-white shadow-md flex items-center justify-center text-white font-bold text-2xl"
+      <div className="w-full max-w-sm relative z-10">
+        {/* Card */}
+        <div className="bg-white rounded-[3rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] overflow-hidden border border-zinc-100 italic-shadow">
+          {/* Header/Banner Area */}
+          <div className="relative pt-12 pb-8 px-8 text-center bg-zinc-900">
+            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none overflow-hidden">
+               <div className="absolute inset-0 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]" />
+            </div>
+            
+            <div className="relative inline-block mb-6 pt-2">
+              <div 
+                className="w-28 h-28 rounded-[2.5rem] border-4 border-white shadow-2xl flex items-center justify-center text-white font-black text-4xl overflow-hidden ring-8 ring-zinc-800"
                 style={{ backgroundColor: member.avatarColor }}
               >
-                {initials}
+                {member.image ? (
+                  <img src={member.image} alt={member.firstName} className="w-full h-full object-cover" />
+                ) : (
+                  initials
+                )}
               </div>
             </div>
 
-            <h1 className="text-2xl font-bold text-gray-900">
-              {member.firstName} {member.lastName}
-            </h1>
-            {member.jobTitle && (
-              <p className="text-sm font-medium text-indigo-600 mt-0.5">{member.jobTitle}</p>
-            )}
-            {member.company && (
-              <p className="text-sm text-gray-500 mt-0.5">{member.company}</p>
-            )}
+            <div className="space-y-1.5">
+              <h1 className="text-3xl font-black text-white tracking-tight leading-tight">
+                {member.firstName} {member.lastName}
+              </h1>
+              {member.jobTitle && (
+                <p className="text-sm font-bold text-indigo-400 uppercase tracking-[0.2em]">
+                  {member.jobTitle}
+                </p>
+              )}
+            </div>
+          </div>
 
-            {/* Contact rows */}
-            <div className="mt-5 space-y-3">
+          <div className="p-8 space-y-4">
+            {/* Contact Grid */}
+            <div className="space-y-3">
               {member.email && (
                 <a
                   href={`mailto:${member.email}`}
-                  className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-indigo-50 transition-colors group"
+                  className="flex items-center gap-4 p-4 bg-zinc-50 rounded-2xl border border-transparent hover:border-zinc-100 hover:bg-white hover:shadow-sm transition-all group"
                 >
-                  <div className="w-9 h-9 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-200 transition-colors">
-                    <Mail size={16} className="text-indigo-600" />
+                  <div className="w-10 h-10 bg-white shadow-sm border border-zinc-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <Mail size={18} className="text-zinc-900" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-xs text-gray-400">Email</p>
-                    <p className="text-sm font-medium text-gray-800 truncate">{member.email}</p>
+                    <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Email</p>
+                    <p className="text-sm font-bold text-zinc-900 truncate">{member.email}</p>
                   </div>
                 </a>
               )}
@@ -76,96 +84,106 @@ export default function ContactPage({ member }: Props) {
               {member.phone && (
                 <a
                   href={`tel:${member.phone}`}
-                  className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-indigo-50 transition-colors group"
+                  className="flex items-center gap-4 p-4 bg-zinc-50 rounded-2xl border border-transparent hover:border-zinc-100 hover:bg-white hover:shadow-sm transition-all group"
                 >
-                  <div className="w-9 h-9 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-200 transition-colors">
-                    <Phone size={16} className="text-indigo-600" />
+                  <div className="w-10 h-10 bg-white shadow-sm border border-zinc-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <Phone size={18} className="text-zinc-900" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-xs text-gray-400">Phone</p>
-                    <p className="text-sm font-medium text-gray-800 truncate">{member.phone}</p>
+                    <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Téléphone</p>
+                    <p className="text-sm font-bold text-zinc-900 truncate">{member.phone}</p>
                   </div>
                 </a>
               )}
 
               {member.company && (
-                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
-                  <div className="w-9 h-9 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Building2 size={16} className="text-indigo-600" />
+                <div className="flex items-center gap-4 p-4 bg-zinc-50 rounded-2xl border border-transparent">
+                  <div className="w-10 h-10 bg-white shadow-sm border border-zinc-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Building2 size={18} className="text-zinc-900" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-xs text-gray-400">Company</p>
-                    <p className="text-sm font-medium text-gray-800 truncate">{member.company}</p>
+                    <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Entreprise</p>
+                    <p className="text-sm font-bold text-zinc-900 truncate">{member.company}</p>
                   </div>
                 </div>
               )}
 
-              {member.website && (
-                <a
-                  href={member.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-indigo-50 transition-colors group"
-                >
-                  <div className="w-9 h-9 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-200 transition-colors">
-                    <Globe size={16} className="text-indigo-600" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-xs text-gray-400">Website</p>
-                    <p className="text-sm font-medium text-gray-800 truncate">{member.website}</p>
-                  </div>
-                </a>
-              )}
+              {(member.website || member.linkedin || member.address) && (
+                <div className="pt-4 space-y-3">
+                  {member.website && (
+                    <a
+                      href={member.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 p-4 bg-zinc-50 rounded-2xl border border-transparent hover:border-zinc-100 hover:bg-white hover:shadow-sm transition-all group"
+                    >
+                      <div className="w-10 h-10 bg-white shadow-sm border border-zinc-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <Globe size={18} className="text-zinc-900" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Site Web</p>
+                        <p className="text-sm font-bold text-zinc-900 truncate">{member.website}</p>
+                      </div>
+                    </a>
+                  )}
 
-              {member.linkedin && (
-                <a
-                  href={member.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-indigo-50 transition-colors group"
-                >
-                  <div className="w-9 h-9 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-200 transition-colors">
-                    <Link2 size={16} className="text-indigo-600" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-xs text-gray-400">LinkedIn</p>
-                    <p className="text-sm font-medium text-gray-800 truncate">
-                      {member.linkedin.replace("https://linkedin.com/in/", "@")}
-                    </p>
-                  </div>
-                </a>
-              )}
+                  {member.linkedin && (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 p-4 bg-zinc-50 rounded-2xl border border-transparent hover:border-zinc-100 hover:bg-white hover:shadow-sm transition-all group"
+                    >
+                      <div className="w-10 h-10 bg-white shadow-sm border border-zinc-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <Link2 size={18} className="text-zinc-900" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">LinkedIn</p>
+                        <p className="text-sm font-bold text-zinc-900 truncate uppercase tracking-tighter">
+                          {member.linkedin.split('/').pop()}
+                        </p>
+                      </div>
+                    </a>
+                  )}
 
-              {member.address && (
-                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
-                  <div className="w-9 h-9 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MapPin size={16} className="text-indigo-600" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-xs text-gray-400">Address</p>
-                    <p className="text-sm font-medium text-gray-800">{member.address}</p>
-                  </div>
+                  {member.address && (
+                    <div className="flex items-center gap-4 p-4 bg-zinc-50 rounded-2xl border border-transparent">
+                      <div className="w-10 h-10 bg-white shadow-sm border border-zinc-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <MapPin size={18} className="text-zinc-900" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Adresse</p>
+                        <p className="text-sm font-bold text-zinc-900 leading-tight">{member.address}</p>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
 
-            {/* Add to contacts CTA */}
-            <button
-              onClick={downloadVCard}
-              className="mt-6 w-full flex items-center justify-center gap-2 px-4 py-3.5 bg-indigo-600 text-white rounded-2xl font-semibold text-sm hover:bg-indigo-700 active:scale-95 transition-all shadow-lg shadow-indigo-200"
-            >
-              <UserCheck size={18} />
-              Add to Contacts
-            </button>
-            <p className="text-center text-xs text-gray-400 mt-2">
-              Downloads a .vcf file — works on iPhone, Android & desktop
-            </p>
+            {/* CTA */}
+            <div className="pt-6">
+              <button
+                onClick={downloadVCard}
+                className="w-full flex items-center justify-center gap-3 px-6 py-5 bg-zinc-900 text-white rounded-[2rem] font-black text-sm hover:bg-zinc-800 shadow-2xl shadow-zinc-200 active:scale-95 transition-all"
+              >
+                <UserCheck size={20} />
+                ENREGISTRER LE CONTACT
+              </button>
+              <p className="text-center text-[10px] font-bold text-zinc-300 uppercase tracking-widest mt-4">
+                Compatible iOS, Android & PC
+              </p>
+            </div>
           </div>
         </div>
 
-        <p className="text-center text-xs text-gray-400 mt-4">
-          Powered by <span className="font-semibold text-indigo-500">teamix</span>
-        </p>
+        <div className="mt-8 flex items-center justify-center gap-2 group cursor-default">
+          <div className="w-1 h-1 bg-zinc-200 rounded-full group-hover:w-4 transition-all duration-500" />
+          <p className="text-[11px] font-black tracking-[0.3em] text-zinc-300 group-hover:text-zinc-600 transition-colors uppercase">
+            teamix digital brand
+          </p>
+          <div className="w-1 h-1 bg-zinc-200 rounded-full group-hover:w-4 transition-all duration-500" />
+        </div>
       </div>
     </div>
   );
