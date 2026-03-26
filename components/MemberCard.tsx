@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { QrCode, Edit2, Trash2, Mail, Phone, Building2 } from "lucide-react";
 import { TeamMember } from "@/lib/types";
 import QRModal from "./QRModal";
@@ -28,7 +29,10 @@ export default function MemberCard({ member, onDeleted }: Props) {
 
   return (
     <>
-      <div className="group bg-white rounded-[2rem] p-6 border border-zinc-100/80 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] hover:border-zinc-200/50 transition-all duration-500 relative flex flex-col h-full overflow-hidden">
+      <motion.div 
+      whileHover={{ y: -4, scale: 1.01 }}
+      className="group relative bg-white rounded-[2rem] border border-zinc-100 shadow-sm hover:shadow-xl hover:shadow-zinc-200/50 transition-all duration-500 overflow-hidden flex flex-col"
+    >
         {/* Animated Background Highlight */}
         <div className="absolute -top-24 -right-24 w-48 h-48 bg-zinc-50 rounded-full blur-3xl group-hover:bg-indigo-50/50 transition-colors duration-700" />
         
@@ -102,7 +106,7 @@ export default function MemberCard({ member, onDeleted }: Props) {
             </button>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {showQR && <QRModal member={member} onClose={() => setShowQR(false)} />}
     </>
