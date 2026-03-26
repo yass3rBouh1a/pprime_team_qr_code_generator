@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import { X, Download } from "lucide-react";
 import { TeamMember } from "@/lib/types";
+import { generateVCard } from "@/lib/vcard";
 
 interface Props {
   member: TeamMember;
@@ -21,10 +22,7 @@ export default function QRModal({ member, onClose }: Props) {
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
-  const contactUrl =
-    typeof window !== "undefined"
-      ? `${window.location.origin}/contact/${member.id}`
-      : `/contact/${member.id}`;
+  const vCardData = generateVCard(member);
 
   function downloadQR() {
     const svg = document.getElementById("qr-svg");
@@ -99,7 +97,7 @@ export default function QRModal({ member, onClose }: Props) {
           <div className="p-5 bg-white border border-zinc-100 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative group">
             <QRCodeSVG
               id="qr-svg"
-              value={contactUrl}
+              value={vCardData}
               size={200}
               level="H"
               includeMargin={false}

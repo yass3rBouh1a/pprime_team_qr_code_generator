@@ -135,26 +135,26 @@ export default function MemberForm({ initial, memberId }: Props) {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <Field label="Prénom" field="firstName" form={form} set={set} required placeholder="Jean" />
-        <Field label="Nom" field="lastName" form={form} set={set} required placeholder="Dupont" />
+        <Field label="Prénom" field="firstName" form={form} set={set} required placeholder="Ahmed" />
+        <Field label="Nom" field="lastName" form={form} set={set} required placeholder="El Amrani" />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <Field label="Poste" field="jobTitle" form={form} set={set} placeholder="Directeur Design" />
-        <Field label="Entreprise" field="company" form={form} set={set} placeholder="Agence Créative" />
+        <Field label="Entreprise" field="company" form={form} set={set} placeholder="P Prime Maroc" />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <Field label="Email" field="email" type="email" form={form} set={set} placeholder="jean@agence.com" />
-        <Field label="Téléphone" field="phone" type="tel" form={form} set={set} placeholder="+33 6 00 00 00 00" />
+        <Field label="Email" field="email" type="email" form={form} set={set} placeholder="ahmed@pprime.ma" />
+        <Field label="Téléphone" field="phone" type="tel" form={form} set={set} placeholder="+212 6 00 00 00 00" />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <Field label="Site Web" field="website" type="url" form={form} set={set} placeholder="https://agence.com" />
-        <Field label="LinkedIn" field="linkedin" form={form} set={set} placeholder="linkedin.com/in/jean" />
+        <Field label="Site Web" field="website" type="url" form={form} set={set} placeholder="https://pprime.ma" />
+        <Field label="LinkedIn" field="linkedin" form={form} set={set} placeholder="linkedin.com/in/ahmed" />
       </div>
       
-      <Field label="Adresse" field="address" form={form} set={set} placeholder="75001 Paris, France" />
+      <Field label="Adresse" field="address" form={form} set={set} placeholder="Anfa, Casablanca, Maroc" />
 
       <div className="space-y-2">
         <label className="block text-sm font-bold text-zinc-700 tracking-tight">Notes</label>
