@@ -57,7 +57,7 @@ export default function MemberForm({ initial, memberId }: Props) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      if (!res.ok) throw new Error("Échec de l'enregistrement");
+      if (!res.ok) throw new Error("Failed to save");
       router.push("/");
       router.refresh();
     } finally {
@@ -69,7 +69,7 @@ export default function MemberForm({ initial, memberId }: Props) {
     <form onSubmit={handleSubmit} className="space-y-8">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
         <div className="space-y-2">
-          <label className="block text-sm font-bold text-slate-700 tracking-tight">Photo du membre</label>
+          <label className="block text-sm font-bold text-slate-700 tracking-tight">Member Photo</label>
           <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl border border-dashed border-slate-200 hover:border-slate-300 transition-colors group cursor-pointer relative">
             <div className="w-16 h-16 rounded-2xl bg-white shadow-sm flex items-center justify-center overflow-hidden border border-slate-100 shrink-0">
               {form.image ? (
@@ -79,8 +79,8 @@ export default function MemberForm({ initial, memberId }: Props) {
               )}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-semibold text-slate-900 truncate">Cliquez pour choisir</p>
-              <p className="text-[10px] text-slate-400">PNG, JPG jusqu'à 2Mo</p>
+              <p className="text-xs font-semibold text-slate-900 truncate">Click to choose</p>
+              <p className="text-[10px] text-slate-400">PNG, JPG up to 2MB</p>
             </div>
             <input
               type="file"
@@ -91,7 +91,7 @@ export default function MemberForm({ initial, memberId }: Props) {
           </div>
         </div>
         <div className="space-y-2">
-          <label className="block text-sm font-bold text-slate-700 tracking-tight">Logo QR Code</label>
+          <label className="block text-sm font-bold text-slate-700 tracking-tight">QR Code Logo</label>
           <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl border border-dashed border-slate-200 hover:border-slate-300 transition-colors group cursor-pointer relative">
             <div className="w-16 h-16 rounded-2xl bg-white shadow-sm flex items-center justify-center overflow-hidden border border-slate-100 shrink-0">
               {form.qrLogo ? (
@@ -101,8 +101,8 @@ export default function MemberForm({ initial, memberId }: Props) {
               )}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-semibold text-slate-900 truncate">Logo personnalisé</p>
-              <p className="text-[10px] text-slate-400">Optionnel (PNG ou SVG)</p>
+              <p className="text-xs font-semibold text-slate-900 truncate">Custom logo</p>
+              <p className="text-[10px] text-slate-400">Optional (PNG or SVG)</p>
             </div>
             <input
               type="file"
@@ -130,38 +130,38 @@ export default function MemberForm({ initial, memberId }: Props) {
           </div>
         </div>
         <label htmlFor="showCornerLogos" className="text-sm font-bold text-indigo-900 cursor-pointer select-none">
-          Afficher le logo dans les coins du QR Code
+          Show logo in corners of the QR Code
         </label>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <Field label="Prénom" field="firstName" form={form} set={set} required placeholder="Ahmed" />
-        <Field label="Nom" field="lastName" form={form} set={set} required placeholder="El Amrani" />
+        <Field label="First Name" field="firstName" form={form} set={set} required placeholder="Ahmed" />
+        <Field label="Last Name" field="lastName" form={form} set={set} required placeholder="El Amrani" />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <Field label="Poste" field="jobTitle" form={form} set={set} placeholder="Directeur Design" />
-        <Field label="Entreprise" field="company" form={form} set={set} placeholder="P Prime Maroc" />
+        <Field label="Job Title" field="jobTitle" form={form} set={set} placeholder="Design Director" />
+        <Field label="Company" field="company" form={form} set={set} placeholder="P Prime Morocco" />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <Field label="Email" field="email" type="email" form={form} set={set} placeholder="ahmed@pprime.ma" />
-        <Field label="Téléphone" field="phone" type="tel" form={form} set={set} placeholder="+212 6 00 00 00 00" />
+        <Field label="Phone" field="phone" type="tel" form={form} set={set} placeholder="+212 6 00 00 00 00" />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <Field label="Site Web" field="website" type="url" form={form} set={set} placeholder="https://pprime.ma" />
+        <Field label="Website" field="website" type="url" form={form} set={set} placeholder="https://pprime.ma" />
         <Field label="LinkedIn" field="linkedin" form={form} set={set} placeholder="linkedin.com/in/ahmed" />
       </div>
       
-      <Field label="Adresse" field="address" form={form} set={set} placeholder="Anfa, Casablanca, Maroc" />
+      <Field label="Address" field="address" form={form} set={set} placeholder="Anfa, Casablanca, Morocco" />
 
       <div className="space-y-2">
         <label className="block text-sm font-bold text-slate-700 tracking-tight">Notes</label>
         <textarea
           value={form.notes as string}
           onChange={(e) => set("notes", e.target.value)}
-          placeholder="Informations complémentaires ou biographie courte..."
+          placeholder="Additional information or short biography..."
           rows={3}
           className="w-full px-4 py-3 bg-slate-50 border border-slate-100 focus:bg-white focus:border-indigo-100 focus:ring-4 focus:ring-indigo-50/30 rounded-2xl text-sm transition-all outline-none resize-none"
         />
@@ -173,14 +173,14 @@ export default function MemberForm({ initial, memberId }: Props) {
           onClick={() => router.back()}
           className="flex-1 px-6 py-3.5 border border-slate-200 text-slate-500 rounded-2xl text-sm font-bold hover:bg-slate-50 hover:text-slate-900 transition-all active:scale-[0.98]"
         >
-          Annuler
+          Cancel
         </button>
         <button
           type="submit"
           disabled={loading}
           className="flex-1 px-6 py-3.5 bg-[#0F1D36] text-white rounded-2xl text-sm font-bold hover:bg-[#1a2d4f] shadow-xl shadow-slate-100 transition-all active:scale-[0.98] disabled:opacity-50"
         >
-          {loading ? "Chargement…" : memberId ? "Mettre à jour" : "Créer le profil"}
+          {loading ? "Loading..." : memberId ? "Update" : "Create profile"}
         </button>
       </div>
     </form>

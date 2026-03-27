@@ -108,7 +108,7 @@ export default function QRModal({ member, onClose }: Props) {
             <div className="mb-6 p-4 bg-amber-50 rounded-2xl border border-amber-100 flex gap-3 items-start">
               <AlertCircle size={18} className="text-amber-600 shrink-0 mt-0.5" />
               <p className="text-[11px] text-amber-900 font-medium leading-relaxed">
-                <span className="font-bold">Attention :</span> L'URL de base n'est pas configurée dans les paramètres. Le QR code utilisera un lien relatif.
+                <span className="font-bold">Warning:</span> Base URL is not configured in settings. QR code will use a relative link.
               </p>
             </div>
           )}
@@ -150,8 +150,8 @@ export default function QRModal({ member, onClose }: Props) {
 
           <p className="text-xs text-center text-zinc-400 font-medium mb-8 max-w-[200px] mx-auto leading-relaxed">
             {baseUrl 
-              ? "Scannez pour ouvrir la page de profil et enregistrer le contact."
-              : "Scannez pour enregistrer les informations de contact directement."}
+              ? "Scan to open profile page and save contact."
+              : "Scan to save contact info directly."}
           </p>
 
           <button
@@ -159,7 +159,7 @@ export default function QRModal({ member, onClose }: Props) {
             className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-zinc-900 text-white rounded-2xl text-sm font-bold hover:bg-zinc-800 shadow-xl shadow-zinc-200 hover:shadow-zinc-300 transition-all active:scale-[0.98]"
           >
             <Download size={18} />
-            Télécharger l'image PNG
+            Download PNG image
           </button>
         </motion.div>
       </div>

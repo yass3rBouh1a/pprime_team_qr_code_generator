@@ -141,7 +141,7 @@ export default function ContactPage({ member }: Props) {
                     rel="noopener noreferrer"
                     className="text-sm font-medium text-indigo-600 hover:underline"
                   >
-                    Voir le profil professionnel
+                    View professional profile
                   </a>
                 </div>
               )}
@@ -161,7 +161,7 @@ export default function ContactPage({ member }: Props) {
 
         {/* Brand Footer */}
         <div className="mt-8 text-center text-[10px] uppercase tracking-[0.4em] font-medium text-slate-400">
-          pprime smart solutions
+          Powered by Smart Solutions - P Prime
         </div>
       </div>
     </div>

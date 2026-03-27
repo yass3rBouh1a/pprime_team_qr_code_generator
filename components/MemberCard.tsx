@@ -19,7 +19,7 @@ export default function MemberCard({ member, onDeleted }: Props) {
   const [deleting, setDeleting] = useState(false);
 
   async function handleDelete() {
-    if (!confirm(`Supprimer ${member.firstName} ${member.lastName} ?`)) return;
+    if (!confirm(`Delete ${member.firstName} ${member.lastName}?`)) return;
     setDeleting(true);
     await fetch(`/api/members/${member.id}`, { method: "DELETE" });
     onDeleted(member.id);
@@ -87,7 +87,7 @@ export default function MemberCard({ member, onDeleted }: Props) {
               <Link
                 href={`/edit/${member.id}`}
                 className="p-2 text-slate-400 hover:text-indigo-600 hover:bg-slate-50 rounded-lg transition-colors"
-                title="Modifier"
+                title="Edit"
               >
                 <Edit2 size={15} />
               </Link>
@@ -95,7 +95,7 @@ export default function MemberCard({ member, onDeleted }: Props) {
                 onClick={handleDelete}
                 disabled={deleting}
                 className="p-2 text-slate-400 hover:text-red-500 hover:bg-slate-50 rounded-lg transition-colors disabled:opacity-50"
-                title="Supprimer"
+                title="Delete"
               >
                 <Trash2 size={15} />
               </button>

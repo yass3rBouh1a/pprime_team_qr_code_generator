@@ -5,13 +5,13 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Teamix — Gestionnaire de Contacts d'Équipe",
-  description: "Gérez les contacts de votre équipe et générez des cartes de visite QR code",
+  title: "Teamix — Team Contact Manager",
+  description: "Manage your team's contacts and generate QR code business cards",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr">
+    <html lang="en">
       <body className={`${inter.className} bg-gray-50 min-h-screen`}>{children}</body>
     </html>
   );

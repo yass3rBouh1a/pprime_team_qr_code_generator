@@ -172,8 +172,8 @@ export default function TeamList() {
                     <Settings size={20} />
                   </div>
                   <div>
-                    <h2 className="text-xl font-black text-zinc-900 tracking-tight">Paramètres</h2>
-                    <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Configuration App</p>
+                    <h2 className="text-xl font-black text-zinc-900 tracking-tight">Settings</h2>
+                    <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">App Configuration</p>
                   </div>
                 </div>
                 <button
@@ -188,17 +188,17 @@ export default function TeamList() {
                 <div className="space-y-2">
                   <label className="block text-sm font-bold text-zinc-700 tracking-tight flex items-center gap-2">
                     <Globe size={14} className="text-indigo-500" />
-                    URL de base (Domaine)
+                    Base URL (Domain)
                   </label>
                   <input
                     type="url"
                     value={settings.baseUrl}
                     onChange={(e) => setSettings({ ...settings, baseUrl: e.target.value })}
-                    placeholder="https://votre-equipe.com"
+                    placeholder="https://your-team.com"
                     className="w-full px-4 py-3 bg-zinc-50 border-transparent focus:bg-white focus:border-zinc-200 focus:ring-4 focus:ring-zinc-100 rounded-2xl text-sm transition-all outline-none"
                   />
                   <p className="text-[10px] text-zinc-400 font-medium leading-relaxed">
-                    Cette URL sera utilisée pour générer les QR codes pointant vers les pages de profil publiques.
+                    This URL will be used to generate QR codes pointing to public profile pages.
                   </p>
                 </div>
 
@@ -210,7 +210,7 @@ export default function TeamList() {
                   className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-zinc-900 text-white rounded-2xl text-sm font-bold hover:bg-zinc-800 shadow-xl shadow-zinc-200 hover:shadow-zinc-300 transition-all active:scale-[0.98]"
                 >
                   <Check size={18} />
-                  Enregistrer les réglages
+                  Save settings
                 </button>
               </div>
             </motion.div>
