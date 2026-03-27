@@ -160,7 +160,7 @@ export default function ContactPage({ member }: Props) {
         </div>
 
         {/* Brand Footer */}
-        <div className="mt-8 text-center text-[10px] uppercase tracking-[0.4em] font-medium text-slate-400">
+        <div className="mt-8 text-center text-[8px] uppercase tracking-[0.2em] font-medium text-slate-400">
           Powered by Smart Solutions - P Prime
         </div>
       </div>
