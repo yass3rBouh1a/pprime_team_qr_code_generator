@@ -123,7 +123,7 @@ export default function ContactPage({ member }: Props) {
                   {member.firstName} {member.lastName}
                 </h1>
                 {member.jobTitle && (
-                  <p className="text-sm font-light text-slate-300">
+                  <p className="text-sm font-light text-white">
                     {member.jobTitle} {member.company && `at ${member.company}`}
                   </p>
                 )}
