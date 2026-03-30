@@ -15,10 +15,12 @@ interface Props {
 
 export default function QRModal({ member, onClose }: Props) {
   const overlayRef = useRef<HTMLDivElement>(null);
-  const [baseUrl, setBaseUrl] = useState("");
+  const [baseUrl, setBaseUrl] = useState(() => {
+    if (typeof window !== "undefined") return getSettings().baseUrl;
+    return "";
+  });
 
   useEffect(() => {
-    setBaseUrl(getSettings().baseUrl);
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
     }

@@ -22,7 +22,7 @@ interface Props {
   member: TeamMember;
 }
 
-const ease = [0.22, 1, 0.36, 1];
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function ContactPage({ member }: Props) {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -62,63 +62,73 @@ export default function ContactPage({ member }: Props) {
   };
 
   const rows: ContactRow[] = [
-    member.phone
-      ? {
-          label: "Phone",
-          value: member.phone,
-          href: `tel:${member.phone}`,
-          icon: <Phone size={16} />,
-          iconBg: "bg-[#41A9D8]",
-          iconColor: "text-white",
-          actionable: true,
-        }
-      : null,
-    member.email
-      ? {
-          label: "Email",
-          value: member.email,
-          href: `mailto:${member.email}`,
-          icon: <Mail size={16} />,
-          iconBg: "bg-[#41A9D8]",
-          iconColor: "text-white",
-          actionable: true,
-        }
-      : null,
-    member.website
-      ? {
-          label: "Website",
-          value: member.website.replace(/^https?:\/\//, ""),
-          href: member.website,
-          icon: <Globe size={16} />,
-          iconBg: "bg-[#41A9D8]",
-          iconColor: "text-white",
-          actionable: true,
-          external: true,
-        }
-      : null,
-    member.address
-      ? {
-          label: "Address",
-          value: member.address,
-          icon: <MapPin size={16} />,
-          iconBg: "bg-[#41A9D8]",
-          iconColor: "text-white",
-          actionable: false,
-        }
-      : null,
-    member.linkedin
-      ? {
-          label: "LinkedIn",
-          value: "View Profile",
-          href: member.linkedin,
-          icon: <Link2 size={16} />,
-          iconBg: "bg-[#41A9D8]",
-          iconColor: "text-white",
-          actionable: true,
-          external: true,
-        }
-      : null,
-  ].filter((r): r is ContactRow => r !== null);
+    ...(member.phone
+      ? [
+          {
+            label: "Phone",
+            value: member.phone,
+            href: `tel:${member.phone}`,
+            icon: <Phone size={16} />,
+            iconBg: "bg-[#41A9D8]",
+            iconColor: "text-white",
+            actionable: true,
+          },
+        ]
+      : []),
+    ...(member.email
+      ? [
+          {
+            label: "Email",
+            value: member.email,
+            href: `mailto:${member.email}`,
+            icon: <Mail size={16} />,
+            iconBg: "bg-[#41A9D8]",
+            iconColor: "text-white",
+            actionable: true,
+          },
+        ]
+      : []),
+    ...(member.website
+      ? [
+          {
+            label: "Website",
+            value: member.website.replace(/^https?:\/\//, ""),
+            href: member.website,
+            icon: <Globe size={16} />,
+            iconBg: "bg-[#41A9D8]",
+            iconColor: "text-white",
+            actionable: true,
+            external: true,
+          },
+        ]
+      : []),
+    ...(member.address
+      ? [
+          {
+            label: "Address",
+            value: member.address,
+            icon: <MapPin size={16} />,
+            iconBg: "bg-[#41A9D8]",
+            iconColor: "text-white",
+            actionable: false,
+          },
+        ]
+      : []),
+    ...(member.linkedin
+      ? [
+          {
+            label: "LinkedIn",
+            value: "View Profile",
+            href: member.linkedin,
+            icon: <Link2 size={16} />,
+            iconBg: "bg-[#41A9D8]",
+            iconColor: "text-white",
+            actionable: true,
+            external: true,
+          },
+        ]
+      : []),
+  ];
 
   const actions = [
     { label: "Call", href: `tel:${member.phone}`, icon: <Phone size={15} />, enabled: !!member.phone },

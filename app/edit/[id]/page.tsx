@@ -17,7 +17,7 @@ export default async function EditPage({ params }: { params: Promise<{ id: strin
           className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-400 hover:text-zinc-900 mb-10 transition-colors group"
         >
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-          Retour à l'équipe
+          Retour à l&apos;équipe
         </Link>
         <div className="bg-white rounded-[2.5rem] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.05)] border border-zinc-100 p-8 sm:p-12">
           <div className="mb-10">

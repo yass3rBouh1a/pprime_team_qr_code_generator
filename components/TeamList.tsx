@@ -13,10 +13,12 @@ export default function TeamList() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [showSettingsModal, setShowSettingsModal] = useState(false);
-  const [settings, setSettings] = useState<AppSettings | null>(null);
+  const [settings, setSettings] = useState<AppSettings | null>(() => {
+    if (typeof window !== "undefined") return getSettings();
+    return null;
+  });
 
   useEffect(() => {
-    setSettings(getSettings());
     fetch("/api/members")
       .then((r) => r.json())
       .then((data) => setMembers(data))
