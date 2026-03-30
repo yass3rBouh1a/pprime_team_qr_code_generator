@@ -54,7 +54,7 @@ export default function ContactPage({ member }: Props) {
           
           {/* Animated Header Section (Sticky) */}
           <motion.div 
-            className="bg-[#0F1D36] sticky top-0 z-30 text-white overflow-hidden"
+            className="bg-[#0F1D36] sticky top-0 z-40 text-white overflow-hidden"
             style={{ 
               paddingTop: headerPadding, 
               paddingBottom: headerPadding,
@@ -63,6 +63,15 @@ export default function ContactPage({ member }: Props) {
               backgroundPosition: "center"
             }}
           >
+            {/* Corner Logo */}
+            <div className="absolute top-4 left-4 z-10 opacity-100">
+              <img 
+                src="/assets/Logo+slogan_Plan de travail 1 copie 2.png" 
+                alt="Brand Logo" 
+                className="h-12 w-auto object-contain"
+              />
+            </div>
+
             <div className="relative px-6 flex flex-col items-center">
               {/* Avatar Transition Container */}
               <motion.div 
