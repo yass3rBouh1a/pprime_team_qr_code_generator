@@ -68,8 +68,8 @@ export default function ContactPage({ member }: Props) {
           value: member.phone,
           href: `tel:${member.phone}`,
           icon: <Phone size={16} />,
-          iconBg: "bg-indigo-100",
-          iconColor: "text-indigo-600",
+          iconBg: "bg-[#41A9D8]",
+          iconColor: "text-white",
           actionable: true,
         }
       : null,
@@ -79,8 +79,8 @@ export default function ContactPage({ member }: Props) {
           value: member.email,
           href: `mailto:${member.email}`,
           icon: <Mail size={16} />,
-          iconBg: "bg-sky-100",
-          iconColor: "text-sky-600",
+          iconBg: "bg-[#41A9D8]",
+          iconColor: "text-white",
           actionable: true,
         }
       : null,
@@ -90,8 +90,8 @@ export default function ContactPage({ member }: Props) {
           value: member.website.replace(/^https?:\/\//, ""),
           href: member.website,
           icon: <Globe size={16} />,
-          iconBg: "bg-emerald-100",
-          iconColor: "text-emerald-600",
+          iconBg: "bg-[#41A9D8]",
+          iconColor: "text-white",
           actionable: true,
           external: true,
         }
@@ -101,8 +101,8 @@ export default function ContactPage({ member }: Props) {
           label: "Address",
           value: member.address,
           icon: <MapPin size={16} />,
-          iconBg: "bg-rose-100",
-          iconColor: "text-rose-500",
+          iconBg: "bg-[#41A9D8]",
+          iconColor: "text-white",
           actionable: false,
         }
       : null,
@@ -112,8 +112,8 @@ export default function ContactPage({ member }: Props) {
           value: "View Profile",
           href: member.linkedin,
           icon: <Link2 size={16} />,
-          iconBg: "bg-blue-100",
-          iconColor: "text-blue-600",
+          iconBg: "bg-[#41A9D8]",
+          iconColor: "text-white",
           actionable: true,
           external: true,
         }
@@ -405,7 +405,7 @@ export default function ContactPage({ member }: Props) {
               Note
             </p>
             <div className="bg-white rounded-2xl shadow-sm px-5 py-4 flex gap-3">
-              <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-500 flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-[#41A9D8] text-white flex items-center justify-center flex-shrink-0">
                 <FileText size={16} />
               </div>
               <p className="text-[13px] text-slate-500 leading-relaxed italic pt-1">
