@@ -1,10 +1,9 @@
 "use client";
 
-import { Mail, Phone, Globe, Link2, MapPin, Building2, UserCheck, MessageSquare, Plus } from "lucide-react";
+import { Mail, Phone, Globe, Link2, MapPin, MessageSquare, Plus } from "lucide-react";
 import { TeamMember } from "@/lib/types";
 import { generateVCard } from "@/lib/vcard";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { useRef } from "react";
 
 interface Props {
   member: TeamMember;
@@ -68,7 +67,7 @@ export default function ContactPage({ member }: Props) {
               <img 
                 src="/assets/Logo+slogan_Plan de travail 1 copie 2.png" 
                 alt="Brand Logo" 
-                className="h-28 w-auto object-contain"
+                className="h-16 w-auto object-contain"
               />
             </div>
 
