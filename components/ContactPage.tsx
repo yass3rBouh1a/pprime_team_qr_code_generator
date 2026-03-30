@@ -64,29 +64,29 @@ export default function ContactPage({ member }: Props) {
                 style={{ x: avatarX }}
               >
                 {/* Advanced Presence Indicator (Wow Effect) */}
-                <div className="absolute right-2 bottom-2 z-20 flex items-center justify-center w-4 h-4">
+                <div className="absolute right-[5%] bottom-[5%] z-20 flex items-center justify-center w-6 h-6">
                   {/* Outer Pulsing Glow (Bigger, less opacity) */}
                   <motion.div 
                     className="absolute w-full h-full bg-[#22c55e] rounded-full"
                     animate={{ 
-                      scale: [1, 2.5],
+                      scale: [1, 3],
                       opacity: [0.6, 0]
                     }}
                     transition={{ 
-                      duration: 2, 
+                      duration: 2.5, 
                       repeat: Infinity,
                       ease: "easeOut" 
                     }}
                   />
                   {/* Inner Solid Dot (Moves simultaneously with a subtle float) */}
                   <motion.div 
-                    className="relative w-3 h-3 bg-[#22c55e] rounded-full border-2 border-[#0F1D36] shadow-lg"
+                    className="relative w-4 h-4 bg-[#22c55e] rounded-full border-2 border-white shadow-lg"
                     animate={{ 
-                      y: [0, -2, 0],
+                      y: [0, -3, 0],
                       scale: [1, 1.1, 1]
                     }}
                     transition={{ 
-                      duration: 3, 
+                      duration: 4, 
                       repeat: Infinity,
                       ease: "easeInOut" 
                     }}
