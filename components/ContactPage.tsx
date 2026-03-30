@@ -63,34 +63,10 @@ export default function ContactPage({ member }: Props) {
                 className="relative z-10 flex items-center justify-center p-2"
                 style={{ x: avatarX }}
               >
-                {/* Advanced Presence Indicator (Wow Effect) */}
-                <div className="absolute right-[5%] bottom-[5%] z-20 flex items-center justify-center w-6 h-6">
-                  {/* Outer Pulsing Glow (Bigger, less opacity) */}
-                  <motion.div 
-                    className="absolute w-full h-full bg-[#22c55e] rounded-full"
-                    animate={{ 
-                      scale: [1, 3],
-                      opacity: [0.6, 0]
-                    }}
-                    transition={{ 
-                      duration: 2.5, 
-                      repeat: Infinity,
-                      ease: "easeOut" 
-                    }}
-                  />
-                  {/* Inner Solid Dot (Moves simultaneously with a subtle float) */}
-                  <motion.div 
-                    className="relative w-4 h-4 bg-[#22c55e] rounded-full border-2 border-white shadow-lg"
-                    animate={{ 
-                      y: [0, -3, 0],
-                      scale: [1, 1.1, 1]
-                    }}
-                    transition={{ 
-                      duration: 4, 
-                      repeat: Infinity,
-                      ease: "easeInOut" 
-                    }}
-                  />
+                {/* Advanced Presence Indicator (Static) */}
+                <div className="absolute right-[12%] bottom-[12%] z-20 flex items-center justify-center w-6 h-6">
+                  {/* Inner Solid Dot (Static) */}
+                  <div className="relative w-4 h-4 bg-[#22c55e] rounded-full border-2 border-white shadow-lg" />
                 </div>
 
                 {/* Instagram style Green Border Wrapper (Close Friends) */}
