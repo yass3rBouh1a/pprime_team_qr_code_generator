@@ -286,9 +286,12 @@ export default function ContactPage({ member }: Props) {
           </motion.div>
         </motion.div>
 
+        {/* Background Decorative Glow (Top Left) */}
+        <div className="absolute top-10 left-10 w-64 h-64 bg-indigo-500/20 rounded-full blur-[100px] -z-10" />
+
         {/* Scroll hint */}
         <motion.div
-          className="relative z-10 pb-7 flex flex-col items-center gap-1 text-white/35"
+          className="relative z-10 pb-24 flex flex-col items-center gap-1 text-white/35"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.1 }}
@@ -306,7 +309,7 @@ export default function ContactPage({ member }: Props) {
       {/* ══════════════════════════════════════
           DETAILS SHEET — slides up from dark
       ══════════════════════════════════════ */}
-      <div className="relative z-10 bg-[#f1f5f9] rounded-t-[2.5rem] -mt-8 pb-36">
+      <div className="relative z-10 bg-[#f1f5f9] rounded-t-[2.5rem] -mt-32 pb-36 shadow-[0_-20px_50px_rgba(0,0,0,0.1)]">
 
         {/* Drag handle */}
         <div className="flex justify-center pt-4 pb-1">
