@@ -68,7 +68,7 @@ export default function ContactPage({ member }: Props) {
               <img 
                 src="/assets/Logo+slogan_Plan de travail 1 copie 2.png" 
                 alt="Brand Logo" 
-                className="h-12 w-auto object-contain"
+                className="h-20 w-auto object-contain"
               />
             </div>
 
