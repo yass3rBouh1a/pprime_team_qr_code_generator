@@ -42,6 +42,10 @@ export default function ContactPage({ member }: Props) {
   const bgScale = useTransform(smoothProgress, [0, 1], [1, 1.12]);
   const heroContentOpacity = useTransform(smoothProgress, [0, 0.6], [1, 0]);
   const heroContentY = useTransform(smoothProgress, [0, 0.6], [0, -40]);
+  const heroContentX = useTransform(smoothProgress, [0, 0.6], [0, -30]); // Avatar/identity move left
+  const logoOpacity = useTransform(smoothProgress, [0, 0.3], [1, 0]); // Logo fades out fast
+  const glowX = useTransform(smoothProgress, [0, 0.8], [0, -100]); // Glow moves far left
+  const glowOpacity = useTransform(smoothProgress, [0, 0.8], [0.2, 0]);
 
   const initials =
     `${member.firstName[0] ?? ""}${member.lastName[0] ?? ""}`.toUpperCase();
@@ -155,16 +159,28 @@ export default function ContactPage({ member }: Props) {
           />
         </motion.div>
 
-        {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-[#07101f]/10 to-[#07101f]" />
-        <div className="absolute inset-0 bg-[#0F1D36]/40" />
+        {/* ── Top bar Logo ── */}
+        <motion.div
+          className="fixed top-6 left-6 z-50 pointer-events-none"
+          style={{ opacity: logoOpacity }}
+        >
+          <img 
+            src="/assets/Logo+slogan_Plan de travail 1 copie 2.png" 
+            alt="P Prime Logo" 
+            className="h-10 w-auto object-contain drop-shadow-xl"
+          />
+        </motion.div>
 
 
 
         {/* ── Hero center ── */}
         <motion.div
           className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 pb-12 gap-0"
-          style={{ opacity: heroContentOpacity, y: heroContentY }}
+          style={{ 
+            opacity: heroContentOpacity, 
+            y: heroContentY,
+            x: heroContentX 
+          }}
         >
           {/* Avatar */}
           <motion.div
@@ -287,7 +303,10 @@ export default function ContactPage({ member }: Props) {
         </motion.div>
 
         {/* Background Decorative Glow (Top Left) */}
-        <div className="absolute top-10 left-10 w-64 h-64 bg-indigo-500/20 rounded-full blur-[100px] -z-10" />
+        <motion.div 
+          className="absolute top-10 left-10 w-64 h-64 bg-indigo-500/20 rounded-full blur-[100px] -z-10"
+          style={{ x: glowX, opacity: glowOpacity }}
+        />
 
         {/* Scroll hint */}
         <motion.div
@@ -309,7 +328,7 @@ export default function ContactPage({ member }: Props) {
       {/* ══════════════════════════════════════
           DETAILS SHEET — slides up from dark
       ══════════════════════════════════════ */}
-      <div className="relative z-10 bg-[#f1f5f9] rounded-t-[2.5rem] -mt-32 pb-36 shadow-[0_-20px_50px_rgba(0,0,0,0.1)]">
+      <div className="relative z-10 bg-[#f1f5f9] rounded-t-[2.5rem] -mt-[15rem] pb-36 shadow-[0_-20px_50px_rgba(0,0,0,0.1)]">
 
         {/* Drag handle */}
         <div className="flex justify-center pt-4 pb-1">
