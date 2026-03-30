@@ -163,12 +163,12 @@ export default function ContactPage({ member }: Props) {
 
         {/* ── Hero center ── */}
         <motion.div
-          className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 pb-6 gap-0"
+          className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 pb-12 gap-0"
           style={{ opacity: heroContentOpacity, y: heroContentY }}
         >
           {/* Avatar */}
           <motion.div
-            className="relative mb-7"
+            className="relative mb-5"
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: "spring", stiffness: 200, damping: 18, delay: 0.1 }}
@@ -182,14 +182,14 @@ export default function ContactPage({ member }: Props) {
             />
 
             {/* Animated gradient ring */}
-            <div className="relative w-36 h-36 rounded-full p-[3px] shadow-2xl"
+            <div className="relative w-28 h-28 rounded-full p-[2.5px] shadow-2xl"
               style={{
                 background: "linear-gradient(135deg, #2ebd59, #34d399, #06b6d4, #6366f1)",
               }}
             >
-              <div className="w-full h-full rounded-full bg-[#0a1628] p-[3px]">
+              <div className="w-full h-full rounded-full bg-[#0a1628] p-[2.5px]">
                 <div
-                  className="w-full h-full rounded-full overflow-hidden flex items-center justify-center text-white text-5xl font-black"
+                  className="w-full h-full rounded-full overflow-hidden flex items-center justify-center text-white text-4xl font-black"
                   style={{ backgroundColor: member.avatarColor }}
                 >
                   {member.image ? (
@@ -206,17 +206,17 @@ export default function ContactPage({ member }: Props) {
             </div>
 
             {/* Pulsing presence dot */}
-            <div className="absolute bottom-2 right-2 z-20">
-              <span className="relative flex w-5 h-5">
+            <div className="absolute bottom-1 right-1 z-20">
+              <span className="relative flex w-4 h-4">
                 <span className="animate-ping absolute inset-0 rounded-full bg-emerald-400 opacity-70" />
-                <span className="relative w-5 h-5 rounded-full bg-emerald-500 border-[2.5px] border-white shadow-lg" />
+                <span className="relative w-4 h-4 rounded-full bg-emerald-500 border-[2px] border-white shadow-lg" />
               </span>
             </div>
           </motion.div>
 
           {/* Name */}
           <motion.h1
-            className="text-[2.6rem] font-black text-white text-center leading-[1.1] tracking-tight"
+            className="text-[2.2rem] font-black text-white text-center leading-[1.1] tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25, duration: 0.6, ease }}
@@ -236,7 +236,7 @@ export default function ContactPage({ member }: Props) {
           {/* Job title */}
           {member.jobTitle && (
             <motion.p
-              className="mt-2 text-[13px] text-white/65 font-medium text-center tracking-wide"
+              className="mt-1 text-[13px] text-white/65 font-medium text-center tracking-wide"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35, duration: 0.5, ease }}
@@ -248,13 +248,13 @@ export default function ContactPage({ member }: Props) {
           {/* Company chip */}
           {member.company && (
             <motion.div
-              className="mt-3.5 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-md"
+              className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md"
               initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.44, duration: 0.45, ease }}
             >
               <Building2 size={10} className="text-white/60" />
-              <span className="text-[11px] font-semibold text-white/85 tracking-wider">
+              <span className="text-[10px] font-semibold text-white/85 tracking-wider">
                 {member.company}
               </span>
             </motion.div>
@@ -262,7 +262,7 @@ export default function ContactPage({ member }: Props) {
 
           {/* Action pills */}
           <motion.div
-            className="flex flex-wrap justify-center gap-2.5 mt-9"
+            className="flex flex-wrap justify-center gap-2 mt-7"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.52, duration: 0.55, ease }}
