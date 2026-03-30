@@ -238,6 +238,29 @@ export default function ContactPage({ member }: Props) {
                 <span className="relative w-4 h-4 rounded-full bg-emerald-500 border-[2px] border-white shadow-lg" />
               </span>
             </div>
+
+            {/* Floating action icon circles — left of avatar, shifted up */}
+            <motion.div
+              className="absolute -left-[88px] -top-3 flex flex-col gap-2.5"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.52, duration: 0.55, ease }}
+            >
+              {actions.map(({ label, href, icon, enabled, external }) =>
+                enabled ? (
+                  <a
+                    key={label}
+                    href={href}
+                    target={external ? "_blank" : undefined}
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="w-10 h-10 rounded-full bg-white/15 border border-white/25 backdrop-blur-md text-white flex items-center justify-center active:scale-90 transition-transform hover:bg-white/25"
+                  >
+                    {icon}
+                  </a>
+                ) : null
+              )}
+            </motion.div>
           </motion.div>
 
           {/* Name */}
@@ -286,30 +309,6 @@ export default function ContactPage({ member }: Props) {
             </motion.div>
           )}
 
-          {/* Action pills */}
-          <motion.div
-            className="flex flex-wrap justify-center gap-2 mt-7"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.52, duration: 0.55, ease }}
-          >
-            {actions.map(({ label, href, icon, enabled, external }) => (
-              <a
-                key={label}
-                href={href}
-                target={external && enabled ? "_blank" : undefined}
-                rel="noopener noreferrer"
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-full backdrop-blur-md border text-xs font-semibold tracking-wide transition-all active:scale-90 ${
-                  enabled
-                    ? "bg-white/15 border-white/25 text-white hover:bg-white/25 hover:border-white/40"
-                    : "bg-white/5 border-white/10 text-white/25 pointer-events-none"
-                }`}
-              >
-                {icon}
-                {label}
-              </a>
-            ))}
-          </motion.div>
         </motion.div>
 
         {/* Background Decorative Glow (Top Left) */}
