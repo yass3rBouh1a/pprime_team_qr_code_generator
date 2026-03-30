@@ -26,6 +26,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function ContactPage({ member }: Props) {
   const heroRef = useRef<HTMLDivElement>(null);
+  const detailsRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -239,28 +240,29 @@ export default function ContactPage({ member }: Props) {
               </span>
             </div>
 
-            {/* Floating action icon circles — left of avatar, shifted up */}
-            <motion.div
-              className="absolute -left-[88px] -top-3 flex flex-col gap-2.5"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.52, duration: 0.55, ease }}
-            >
-              {actions.map(({ label, href, icon, enabled, external }) =>
-                enabled ? (
-                  <a
-                    key={label}
-                    href={href}
-                    target={external ? "_blank" : undefined}
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                    className="w-10 h-10 rounded-full bg-white/15 border border-white/25 backdrop-blur-md text-white flex items-center justify-center active:scale-90 transition-transform hover:bg-white/25"
-                  >
-                    {icon}
-                  </a>
-                ) : null
-              )}
-            </motion.div>
+          </motion.div>
+
+          {/* Action icon circles — below avatar */}
+          <motion.div
+            className="flex justify-center gap-3 mt-5"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.52, duration: 0.55, ease }}
+          >
+            {actions.map(({ label, href, icon, enabled, external }) =>
+              enabled ? (
+                <a
+                  key={label}
+                  href={href}
+                  target={external ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-11 h-11 rounded-full bg-white/15 border border-white/25 backdrop-blur-md text-white flex items-center justify-center active:scale-90 transition-transform hover:bg-white/25"
+                >
+                  {icon}
+                </a>
+              ) : null
+            )}
           </motion.div>
 
           {/* Name */}
@@ -317,9 +319,10 @@ export default function ContactPage({ member }: Props) {
           style={{ x: glowX, opacity: glowOpacity }}
         />
 
-        {/* Scroll hint */}
-        <motion.div
-          className="relative z-10 pb-72 flex flex-col items-center gap-1 text-white/35"
+        {/* Scroll hint — clickable */}
+        <motion.button
+          onClick={() => detailsRef.current?.scrollIntoView({ behavior: "smooth" })}
+          className="relative z-10 pb-72 flex flex-col items-center gap-1 text-white/35 hover:text-white/60 transition-colors cursor-pointer bg-transparent border-0"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.1 }}
@@ -331,13 +334,13 @@ export default function ContactPage({ member }: Props) {
           >
             <ChevronDown size={15} />
           </motion.div>
-        </motion.div>
+        </motion.button>
       </div>
 
       {/* ══════════════════════════════════════
           DETAILS SHEET — slides up from dark
       ══════════════════════════════════════ */}
-      <div className="relative z-10 bg-[#f1f5f9] rounded-t-[2.5rem] -mt-[15rem] pb-36 shadow-[0_-20px_50px_rgba(0,0,0,0.1)]">
+      <div ref={detailsRef} className="relative z-10 bg-[#f1f5f9] rounded-t-[2.5rem] -mt-[15rem] pb-36 shadow-[0_-20px_50px_rgba(0,0,0,0.1)]">
 
         {/* Drag handle */}
         <div className="flex justify-center pt-4 pb-1">
