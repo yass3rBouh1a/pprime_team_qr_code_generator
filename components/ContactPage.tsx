@@ -240,29 +240,28 @@ export default function ContactPage({ member }: Props) {
               </span>
             </div>
 
-          </motion.div>
-
-          {/* Action icon circles — below avatar */}
-          <motion.div
-            className="flex justify-center gap-3 mt-5"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.52, duration: 0.55, ease }}
-          >
-            {actions.map(({ label, href, icon, enabled, external }) =>
-              enabled ? (
-                <a
-                  key={label}
-                  href={href}
-                  target={external ? "_blank" : undefined}
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="w-11 h-11 rounded-full bg-white/15 border border-white/25 backdrop-blur-md text-white flex items-center justify-center active:scale-90 transition-transform hover:bg-white/25"
-                >
-                  {icon}
-                </a>
-              ) : null
-            )}
+            {/* Floating action icon circles — left of avatar, top-aligned */}
+            <motion.div
+              className="absolute -left-[88px] top-0 flex flex-col gap-2.5"
+              initial={{ opacity: 0, x: 16 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.52, duration: 0.55, ease }}
+            >
+              {actions.map(({ label, href, icon, enabled, external }) =>
+                enabled ? (
+                  <a
+                    key={label}
+                    href={href}
+                    target={external ? "_blank" : undefined}
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="w-11 h-11 rounded-full bg-white/15 border border-white/25 backdrop-blur-md text-white flex items-center justify-center active:scale-90 transition-transform hover:bg-white/25"
+                  >
+                    {icon}
+                  </a>
+                ) : null
+              )}
+            </motion.div>
           </motion.div>
 
           {/* Name */}
