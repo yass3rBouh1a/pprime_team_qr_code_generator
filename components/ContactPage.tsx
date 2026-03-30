@@ -3,7 +3,7 @@
 import { Mail, Phone, Globe, Link2, MapPin, Building2, UserCheck, MessageSquare, Plus } from "lucide-react";
 import { TeamMember } from "@/lib/types";
 import { generateVCard } from "@/lib/vcard";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
 
 interface Props {
@@ -13,13 +13,20 @@ interface Props {
 export default function ContactPage({ member }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
+  
+  // Smoothen the scroll value
+  const smoothScrollY = useSpring(scrollY, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
-  // Scroll animations
-  const avatarSize = useTransform(scrollY, [0, 100], [112, 56]); // 28 (w-28) -> 14 (w-14)
-  const avatarX = useTransform(scrollY, [0, 100], [0, -140]); // Center to left
-  const iconsOpacity = useTransform(scrollY, [0, 50], [1, 0]); // Hide old icons
-  const stickyIconsOpacity = useTransform(scrollY, [80, 120], [0, 1]); // Show sticky icons
-  const headerPadding = useTransform(scrollY, [0, 100], [48, 16]); // pt-12 (48px) to pt-4 (16px)
+  // Scroll animations using smoothed scroll value
+  const avatarSize = useTransform(smoothScrollY, [0, 100], [112, 56]); // 28 (w-28) -> 14 (w-14)
+  const avatarX = useTransform(smoothScrollY, [0, 100], [0, -140]); // Center to left
+  const iconsOpacity = useTransform(smoothScrollY, [0, 50], [1, 0]); // Hide old icons
+  const stickyIconsOpacity = useTransform(smoothScrollY, [80, 120], [0, 1]); // Show sticky icons
+  const headerPadding = useTransform(smoothScrollY, [0, 100], [48, 16]); // pt-12 (48px) to pt-4 (16px)
 
   const initials = `${member.firstName[0] ?? ""}${member.lastName[0] ?? ""}`.toUpperCase();
 
@@ -51,26 +58,60 @@ export default function ContactPage({ member }: Props) {
             style={{ paddingTop: headerPadding, paddingBottom: headerPadding }}
           >
             <div className="relative px-6 flex flex-col items-center">
-              {/* Avatar Transition */}
+              {/* Avatar Transition Container */}
               <motion.div 
-                className="relative z-10 flex items-center justify-center"
+                className="relative z-10 flex items-center justify-center p-2"
                 style={{ x: avatarX }}
               >
+                {/* Advanced Presence Indicator (Wow Effect) */}
+                <div className="absolute right-2 bottom-2 z-20 flex items-center justify-center w-4 h-4">
+                  {/* Outer Pulsing Glow (Bigger, less opacity) */}
+                  <motion.div 
+                    className="absolute w-full h-full bg-[#22c55e] rounded-full"
+                    animate={{ 
+                      scale: [1, 2.5],
+                      opacity: [0.6, 0]
+                    }}
+                    transition={{ 
+                      duration: 2, 
+                      repeat: Infinity,
+                      ease: "easeOut" 
+                    }}
+                  />
+                  {/* Inner Solid Dot (Moves simultaneously with a subtle float) */}
+                  <motion.div 
+                    className="relative w-3 h-3 bg-[#22c55e] rounded-full border-2 border-[#0F1D36] shadow-lg"
+                    animate={{ 
+                      y: [0, -2, 0],
+                      scale: [1, 1.1, 1]
+                    }}
+                    transition={{ 
+                      duration: 3, 
+                      repeat: Infinity,
+                      ease: "easeInOut" 
+                    }}
+                  />
+                </div>
+
+                {/* Instagram style Green Border Wrapper (Close Friends) */}
                 <motion.div 
-                  className="rounded-full border-2 border-white/20 p-1 bg-[#0F1D36]"
+                  className="rounded-full bg-gradient-to-tr from-[#2ebd59] to-[#34d399] p-[3px] shadow-2xl overflow-hidden"
                   style={{ width: avatarSize, height: avatarSize }}
                 >
-                  <div 
-                    className="w-full h-full rounded-full border-2 border-white shadow-xl flex items-center justify-center text-white font-bold text-4xl overflow-hidden"
-                    style={{ backgroundColor: member.avatarColor }}
-                  >
-                    {member.image ? (
-                      <img src={member.image} alt={member.firstName} className="w-full h-full object-cover" />
-                    ) : (
-                      <motion.span style={{ fontSize: useTransform(avatarSize, [56, 112], [20, 36]) }}>
-                        {initials}
-                      </motion.span>
-                    )}
+                  {/* Inner White / Gap Ring */}
+                  <div className="w-full h-full rounded-full bg-[#0F1D36] p-[2px]">
+                    <div 
+                      className="w-full h-full rounded-full border-2 border-white/90 flex items-center justify-center text-white font-bold text-4xl overflow-hidden shadow-inner"
+                      style={{ backgroundColor: member.avatarColor }}
+                    >
+                      {member.image ? (
+                        <img src={member.image} alt={member.firstName} className="w-full h-full object-cover" />
+                      ) : (
+                        <motion.span style={{ fontSize: useTransform(avatarSize, [56, 112], [20, 36]) }}>
+                          {initials}
+                        </motion.span>
+                      )}
+                    </div>
                   </div>
                 </motion.div>
 
@@ -93,7 +134,7 @@ export default function ContactPage({ member }: Props) {
 
               {/* Name & Title (Fade out on scroll if needed, or keep) */}
               <motion.div 
-                className="mt-6 text-center space-y-1"
+                className="mt-4 text-center space-y-1"
                 style={{ opacity: iconsOpacity, scale: iconsOpacity }}
               >
                 <h1 className="text-2xl font-bold tracking-tight">
@@ -106,31 +147,31 @@ export default function ContactPage({ member }: Props) {
                 )}
               </motion.div>
 
-              {/* Large Icons Grid (Original) */}
+              {/* Large Icons Grid (Original Icons - now with smoother opacity) */}
               <motion.div 
                 className="grid grid-cols-4 gap-2 mt-8 w-full max-w-[320px]"
                 style={{ opacity: iconsOpacity, display: useTransform(iconsOpacity, (v) => v === 0 ? "none" : "grid") }}
               >
                 <div className="flex flex-col items-center gap-2 group">
-                  <a href={`tel:${member.phone}`} className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-[#0F1D36] shadow-lg transition-all">
+                  <a href={`tel:${member.phone}`} className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-[#0F1D36] shadow-lg transition-all hover:scale-110 active:scale-95">
                     <Phone size={20} />
                   </a>
                   <span className="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">Call</span>
                 </div>
                 <div className="flex flex-col items-center gap-2 group">
-                  <a href={`sms:${member.phone}`} className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-[#0F1D36] shadow-lg transition-all">
+                  <a href={`sms:${member.phone}`} className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-[#0F1D36] shadow-lg transition-all hover:scale-110 active:scale-95">
                     <MessageSquare size={20} />
                   </a>
                   <span className="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">Message</span>
                 </div>
                 <div className="flex flex-col items-center gap-2 group">
-                  <a href={`mailto:${member.email}`} className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-[#0F1D36] shadow-lg transition-all">
+                  <a href={`mailto:${member.email}`} className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-[#0F1D36] shadow-lg transition-all hover:scale-110 active:scale-95">
                     <Mail size={20} />
                   </a>
                   <span className="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">Email</span>
                 </div>
                 <div className="flex flex-col items-center gap-2 group">
-                  <a href={member.website || "#"} target={member.website ? "_blank" : undefined} rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-[#0F1D36] shadow-lg transition-all">
+                  <a href={member.website || "#"} target={member.website ? "_blank" : undefined} rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-[#0F1D36] shadow-lg transition-all hover:scale-110 active:scale-95">
                     <Globe size={20} />
                   </a>
                   <span className="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">Site</span>
