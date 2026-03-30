@@ -175,7 +175,7 @@ export default function ContactPage({ member }: Props) {
           style={{ opacity: logoOpacity }}
         >
           <img 
-            src="/assets/Logo+slogan_Plan de travail 1 copie 2.png" 
+            src="/assets/logo-slogan.png" 
             alt="P Prime Logo" 
             className="h-10 w-auto object-contain drop-shadow-xl"
           />
@@ -432,9 +432,9 @@ export default function ContactPage({ member }: Props) {
           transition={{ delay: 0.7 }}
         >
           <img
-            src="/assets/Logo+slogan_Plan de travail 1 copie 2.png"
-            alt="logo"
-            className="h-[14px] w-auto object-contain"
+            src="/assets/logo-slogan.png"
+            alt="Brand"
+            className="h-10 w-auto opacity-90 brightness-0 invert"
           />
           <p className="text-[8.5px] uppercase tracking-[0.3em] font-black text-slate-400">
             Powered by Smart Solutions · P Prime
