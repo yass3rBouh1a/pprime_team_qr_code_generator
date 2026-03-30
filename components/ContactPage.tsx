@@ -77,7 +77,7 @@ export default function ContactPage({ member }: Props) {
                   {/* Inner White / Gap Ring */}
                   <div className="w-full h-full rounded-full bg-[#0F1D36] p-[2px]">
                     <div 
-                      className="w-full h-full rounded-full border-2 border-white/90 flex items-center justify-center text-white font-bold text-4xl overflow-hidden shadow-inner"
+                      className="w-full h-full rounded-full flex items-center justify-center text-white font-bold text-4xl overflow-hidden shadow-inner"
                       style={{ backgroundColor: member.avatarColor }}
                     >
                       {member.image ? (
