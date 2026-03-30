@@ -291,7 +291,7 @@ export default function ContactPage({ member }: Props) {
 
         {/* Scroll hint */}
         <motion.div
-          className="relative z-10 pb-24 flex flex-col items-center gap-1 text-white/35"
+          className="relative z-10 pb-40 flex flex-col items-center gap-1 text-white/35"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.1 }}
