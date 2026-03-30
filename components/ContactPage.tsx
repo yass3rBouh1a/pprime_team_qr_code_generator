@@ -353,8 +353,7 @@ export default function ContactPage({ member }: Props) {
                       {row.label}
                     </p>
                     <p className={`text-[13px] font-semibold leading-snug truncate ${
-                      row.label === "LinkedIn" ? "text-blue-600" :
-                      row.label === "Website" ? "text-emerald-600" : "text-slate-800"
+                      row.label === "LinkedIn" ? "text-blue-600" : "text-slate-800"
                     }`}>
                       {row.value}
                     </p>
