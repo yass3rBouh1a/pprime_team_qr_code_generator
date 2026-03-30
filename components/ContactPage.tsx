@@ -55,7 +55,13 @@ export default function ContactPage({ member }: Props) {
           {/* Animated Header Section (Sticky) */}
           <motion.div 
             className="bg-[#0F1D36] sticky top-0 z-30 text-white overflow-hidden"
-            style={{ paddingTop: headerPadding, paddingBottom: headerPadding }}
+            style={{ 
+              paddingTop: headerPadding, 
+              paddingBottom: headerPadding,
+              backgroundImage: "url('/assets/bg-contact.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "center"
+            }}
           >
             <div className="relative px-6 flex flex-col items-center">
               {/* Avatar Transition Container */}
