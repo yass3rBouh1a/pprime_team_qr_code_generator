@@ -12,6 +12,7 @@ import {
   Building2,
   ChevronDown,
   FileText,
+  Linkedin,
 } from "lucide-react";
 import { TeamMember } from "@/lib/types";
 import { generateVCard } from "@/lib/vcard";
@@ -127,9 +128,9 @@ export default function ContactPage({ member }: Props) {
       ? [
           {
             label: "LinkedIn",
-            value: "View Profile",
+            value: "Voir le profil",
             href: member.linkedin,
-            icon: <Link2 size={16} />,
+            icon: <Linkedin size={16} />,
             iconBg: "bg-[#41A9D8]",
             iconColor: "text-white",
             actionable: true,
@@ -137,6 +138,16 @@ export default function ContactPage({ member }: Props) {
           },
         ]
       : []),
+    {
+      label: "P Prime",
+      value: "Suivre P Prime",
+      href: "https://www.linkedin.com/company/p-prime/",
+      icon: <Linkedin size={16} />,
+      iconBg: "bg-[#0077B5]",
+      iconColor: "text-white",
+      actionable: true,
+      external: true,
+    },
   ];
 
   const actions = [
@@ -144,6 +155,7 @@ export default function ContactPage({ member }: Props) {
     { label: "Message", href: `sms:${member.phone}`, icon: <MessageSquare size={15} />, enabled: !!member.phone },
     { label: "Email", href: `mailto:${member.email}`, icon: <Mail size={15} />, enabled: !!member.email },
     { label: "Website", href: member.website ?? "#", icon: <Globe size={15} />, enabled: !!member.website, external: true },
+    { label: "LinkedIn", href: member.linkedin ?? "#", icon: <Linkedin size={15} />, enabled: !!member.linkedin, external: true },
   ];
 
   function downloadVCard() {
@@ -347,7 +359,7 @@ export default function ContactPage({ member }: Props) {
       {/* ══════════════════════════════════════
           DETAILS SHEET — slides up from dark
       ══════════════════════════════════════ */}
-      <div ref={detailsRef} className="relative z-10 bg-[#f1f5f9] rounded-t-[2.5rem] -mt-[15rem] pb-36 shadow-[0_-20px_50px_rgba(0,0,0,0.1)]">
+      <div ref={detailsRef} className="relative z-10 bg-[#f1f5f9] rounded-t-[2.5rem] -mt-[22rem] pb-36 shadow-[0_-20px_50px_rgba(0,0,0,0.1)]">
 
         {/* Drag handle */}
         <div className="flex justify-center pt-4 pb-1">
