@@ -334,13 +334,13 @@ export default function ContactPage({ member }: Props) {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.1 }}
         >
+          <span className="text-[9px] uppercase tracking-[0.25em] font-bold">Scroll</span>
           <motion.div
             animate={{ y: [0, -7, 0] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
           >
             <ChevronDown size={15} className="rotate-180" />
           </motion.div>
-          <span className="text-[9px] uppercase tracking-[0.25em] font-bold">Scroll</span>
         </motion.button>
       </div>
 
@@ -357,7 +357,7 @@ export default function ContactPage({ member }: Props) {
         {/* ── Contact info section ── */}
         <div className="px-4 pt-5">
           <p className="text-[9.5px] font-black uppercase tracking-[0.22em] text-slate-400/80 px-1 mb-3">
-            Contact
+            Contact P Prime
           </p>
 
           <div className="bg-white rounded-2xl shadow-sm overflow-hidden divide-y divide-slate-100/80">
@@ -382,12 +382,12 @@ export default function ContactPage({ member }: Props) {
                         rel="noopener noreferrer"
                         aria-label="WhatsApp"
                         onClick={(e) => e.stopPropagation()}
-                        className="w-10 h-10 rounded-xl bg-[#25D366] text-white flex items-center justify-center active:scale-90 transition-transform"
+                        className="w-10 h-10 rounded-full bg-[#25D366]/20 border border-[#25D366]/40 backdrop-blur-md text-[#25D366] flex items-center justify-center active:scale-90 transition-transform"
                       >
                         <WhatsAppIcon />
                       </a>
                     )}
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${row.iconBg} ${row.iconColor}`}>
+                    <div className="w-10 h-10 rounded-full bg-[#41A9D8]/20 border border-[#41A9D8]/40 backdrop-blur-md text-[#41A9D8] flex items-center justify-center">
                       {row.icon}
                     </div>
                   </div>
