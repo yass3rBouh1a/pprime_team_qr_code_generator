@@ -12,7 +12,6 @@ import {
   Building2,
   ChevronDown,
   FileText,
-  Linkedin,
 } from "lucide-react";
 import { TeamMember } from "@/lib/types";
 import { generateVCard } from "@/lib/vcard";
@@ -51,6 +50,12 @@ export default function ContactPage({ member }: Props) {
 
   const initials =
     `${member.firstName[0] ?? ""}${member.lastName[0] ?? ""}`.toUpperCase();
+
+  const LinkedInIcon = ({ size = 16 }: { size?: number }) => (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+    </svg>
+  );
 
   const WhatsAppIcon = () => (
     <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
@@ -130,7 +135,7 @@ export default function ContactPage({ member }: Props) {
             label: "LinkedIn",
             value: "Voir le profil",
             href: member.linkedin,
-            icon: <Linkedin size={16} />,
+            icon: <LinkedInIcon size={16} />,
             iconBg: "bg-[#41A9D8]",
             iconColor: "text-white",
             actionable: true,
@@ -142,7 +147,7 @@ export default function ContactPage({ member }: Props) {
       label: "P Prime",
       value: "Suivre P Prime",
       href: "https://www.linkedin.com/company/p-prime/",
-      icon: <Linkedin size={16} />,
+      icon: <LinkedInIcon size={16} />,
       iconBg: "bg-[#0077B5]",
       iconColor: "text-white",
       actionable: true,
@@ -155,7 +160,7 @@ export default function ContactPage({ member }: Props) {
     { label: "Message", href: `sms:${member.phone}`, icon: <MessageSquare size={15} />, enabled: !!member.phone },
     { label: "Email", href: `mailto:${member.email}`, icon: <Mail size={15} />, enabled: !!member.email },
     { label: "Website", href: member.website ?? "#", icon: <Globe size={15} />, enabled: !!member.website, external: true },
-    { label: "LinkedIn", href: member.linkedin ?? "#", icon: <Linkedin size={15} />, enabled: !!member.linkedin, external: true },
+    { label: "LinkedIn", href: member.linkedin ?? "#", icon: <LinkedInIcon size={15} />, enabled: !!member.linkedin, external: true },
   ];
 
   function downloadVCard() {
