@@ -194,7 +194,7 @@ export default function ContactPage({ member }: Props) {
 
         {/* ── Hero center ── */}
         <motion.div
-          className="relative z-10 flex-1 flex flex-col items-center justify-end px-6 pb-28 gap-0"
+          className="relative z-10 flex-1 flex flex-col items-center justify-end px-6 pt-24 pb-28 gap-0"
           style={{
             opacity: heroContentOpacity,
             y: heroContentY,
@@ -334,13 +334,13 @@ export default function ContactPage({ member }: Props) {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.1 }}
         >
-          <span className="text-[9px] uppercase tracking-[0.25em] font-bold">Scroll</span>
           <motion.div
-            animate={{ y: [0, 7, 0] }}
+            animate={{ y: [0, -7, 0] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
           >
-            <ChevronDown size={15} />
+            <ChevronDown size={15} className="rotate-180" />
           </motion.div>
+          <span className="text-[9px] uppercase tracking-[0.25em] font-bold">Scroll</span>
         </motion.button>
       </div>
 
