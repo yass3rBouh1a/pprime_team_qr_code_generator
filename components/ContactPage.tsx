@@ -194,16 +194,16 @@ export default function ContactPage({ member }: Props) {
 
         {/* ── Hero center ── */}
         <motion.div
-          className="relative z-10 flex-1 flex flex-col items-center justify-end px-6 pb-20 gap-0"
-          style={{ 
-            opacity: heroContentOpacity, 
+          className="relative z-10 flex-1 flex flex-col items-center justify-end px-6 pb-28 gap-0"
+          style={{
+            opacity: heroContentOpacity,
             y: heroContentY,
-            x: heroContentX 
+            x: heroContentX
           }}
         >
           {/* Avatar */}
           <motion.div
-            className="relative mb-5"
+            className="relative mb-4"
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: "spring", stiffness: 200, damping: 18, delay: 0.1 }}
@@ -241,7 +241,7 @@ export default function ContactPage({ member }: Props) {
             </div>
 
             {/* Pulsing presence dot */}
-            <div className="absolute bottom-1 left-1 z-20">
+            <div className="absolute bottom-1 right-1 z-20">
               <span className="relative flex w-4 h-4">
                 <span className="animate-ping absolute inset-0 rounded-full bg-emerald-400 opacity-70" />
                 <span className="relative w-4 h-4 rounded-full bg-emerald-500 border-[2px] border-white shadow-lg" />
@@ -249,7 +249,26 @@ export default function ContactPage({ member }: Props) {
             </div>
           </motion.div>
 
-          {/* Floating action icon circles — below avatar, horizontal row */}
+          {/* Name */}
+          <motion.h1
+            className="text-[2.2rem] font-black text-white text-center leading-[1.1] tracking-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.6, ease }}
+          >
+            {member.firstName}{" "}
+            <span className="text-transparent bg-clip-text"
+              style={{
+                backgroundImage: "linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.55) 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              {member.lastName}
+            </span>
+          </motion.h1>
+
+          {/* Floating action icon circles — below name, horizontal row */}
           <motion.div
             className="flex flex-row gap-3 mt-4 justify-center"
             initial={{ opacity: 0, y: 12 }}
@@ -272,29 +291,10 @@ export default function ContactPage({ member }: Props) {
             )}
           </motion.div>
 
-          {/* Name */}
-          <motion.h1
-            className="text-[2.2rem] font-black text-white text-center leading-[1.1] tracking-tight"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25, duration: 0.6, ease }}
-          >
-            {member.firstName}{" "}
-            <span className="text-transparent bg-clip-text"
-              style={{
-                backgroundImage: "linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.55) 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              {member.lastName}
-            </span>
-          </motion.h1>
-
           {/* Job title */}
           {member.jobTitle && (
             <motion.p
-              className="mt-1 text-[13px] text-white/65 font-medium text-center tracking-wide"
+              className="mt-3 text-[13px] text-white/65 font-medium text-center tracking-wide"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35, duration: 0.5, ease }}
@@ -357,7 +357,7 @@ export default function ContactPage({ member }: Props) {
         {/* ── Contact info section ── */}
         <div className="px-4 pt-5">
           <p className="text-[9.5px] font-black uppercase tracking-[0.22em] text-slate-400/80 px-1 mb-3">
-            Contact P Prime
+            Contact
           </p>
 
           <div className="bg-white rounded-2xl shadow-sm overflow-hidden divide-y divide-slate-100/80">
