@@ -332,7 +332,7 @@ export default function ContactPage({ member }: Props) {
         {/* Scroll hint — clickable */}
         <motion.button
           onClick={() => detailsRef.current?.scrollIntoView({ behavior: "smooth" })}
-          className="relative z-10 pb-72 flex flex-col items-center gap-1 text-white/35 hover:text-white/60 transition-colors cursor-pointer bg-transparent border-0"
+          className="relative z-10 pb-90 flex flex-col items-center gap-1 text-white/35 hover:text-white/60 transition-colors cursor-pointer bg-transparent border-0"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.1 }}

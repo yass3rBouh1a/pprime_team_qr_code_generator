@@ -34,45 +34,53 @@ export default function QRModal({ member, onClose }: Props) {
   function downloadQR() {
     const svg = document.getElementById("qr-svg");
     if (!svg) return;
+    
+    // High-definition scaling: 2048x2048 resolution
+    const targetSize = 2048;
+    const scale = targetSize / 300; 
+
     const serializer = new XMLSerializer();
     const svgStr = serializer.serializeToString(svg);
     const canvas = document.createElement("canvas");
-    canvas.width = 300;
-    canvas.height = 300;
+    canvas.width = targetSize;
+    canvas.height = targetSize;
     const ctx = canvas.getContext("2d")!;
 
     const img = new Image();
     img.onload = () => {
       ctx.fillStyle = "#fff";
-      ctx.fillRect(0, 0, 300, 300);
-      ctx.drawImage(img, 50, 50, 200, 200);
+      ctx.fillRect(0, 0, targetSize, targetSize);
+      
+      const qrSize = 200 * scale;
+      const padding = 50 * scale;
+      ctx.drawImage(img, padding, padding, qrSize, qrSize);
 
       if (member.showCornerLogos && member.qrLogo) {
         const logoImg = new Image();
         logoImg.onload = () => {
-          const logoSize = 34;
+          const logoSize = 34 * scale;
+          const border = 3 * scale;
           const drawLogo = (x: number, y: number) => {
             ctx.fillStyle = "#fff";
-            ctx.fillRect(x - 3, y - 3, logoSize + 6, logoSize + 6);
+            ctx.fillRect(x - border, y - border, logoSize + (border * 2), logoSize + (border * 2));
             ctx.drawImage(logoImg, x, y, logoSize, logoSize);
           };
-          // Adjust coordinates to match the 200px SVG centered in 300px canvas (padding 50px)
-          // Center of finder patterns is at ~33px relative to SVG
-          const offset = 33 - (logoSize / 2);
-          drawLogo(50 + offset, 50 + offset); // Top Left
-          drawLogo(50 + 200 - offset - logoSize, 50 + offset); // Top Right
-          drawLogo(50 + offset, 50 + 200 - offset - logoSize); // Bottom Left
+          
+          const offset = (33 - (34 / 2)) * scale;
+          drawLogo(padding + offset, padding + offset); // Top Left
+          drawLogo(padding + qrSize - offset - logoSize, padding + offset); // Top Right
+          drawLogo(padding + offset, padding + qrSize - offset - logoSize); // Bottom Left
 
           const a = document.createElement("a");
           a.download = `${member.firstName}-${member.lastName}-qr.png`;
-          a.href = canvas.toDataURL("image/png");
+          a.href = canvas.toDataURL("image/png", 1.0); // High quality PNG
           a.click();
         };
         logoImg.src = member.qrLogo;
       } else {
         const a = document.createElement("a");
         a.download = `${member.firstName}-${member.lastName}-qr.png`;
-        a.href = canvas.toDataURL("image/png");
+        a.href = canvas.toDataURL("image/png", 1.0);
         a.click();
       }
     };
