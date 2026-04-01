@@ -53,13 +53,13 @@ export default function ContactPage({ member }: Props) {
 
   const LinkedInIcon = ({ size = 16 }: { size?: number }) => (
     <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor">
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
     </svg>
   );
 
   const WhatsAppIcon = () => (
     <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
     </svg>
   );
 
@@ -78,70 +78,56 @@ export default function ContactPage({ member }: Props) {
   const rows: ContactRow[] = [
     ...(member.phone
       ? [
-          {
-            label: "Phone",
-            value: member.phone,
-            href: `tel:${member.phone}`,
-            icon: <Phone size={16} />,
-            iconBg: "bg-[#41A9D8]",
-            iconColor: "text-white",
-            actionable: true,
-            whatsapp: `https://wa.me/${member.phone.replace(/\D/g, "")}`,
-          },
-        ]
+        {
+          label: "Phone",
+          value: member.phone,
+          href: `tel:${member.phone}`,
+          icon: <Phone size={16} />,
+          iconBg: "bg-[#41A9D8]",
+          iconColor: "text-white",
+          actionable: true,
+          whatsapp: `https://wa.me/${member.phone.replace(/\D/g, "")}`,
+        },
+      ]
       : []),
     ...(member.email
       ? [
-          {
-            label: "Email",
-            value: member.email,
-            href: `mailto:${member.email}`,
-            icon: <Mail size={16} />,
-            iconBg: "bg-[#41A9D8]",
-            iconColor: "text-white",
-            actionable: true,
-          },
-        ]
+        {
+          label: "Email",
+          value: member.email,
+          href: `mailto:${member.email}`,
+          icon: <Mail size={16} />,
+          iconBg: "bg-[#41A9D8]",
+          iconColor: "text-white",
+          actionable: true,
+        },
+      ]
       : []),
     ...(member.website
       ? [
-          {
-            label: "Website",
-            value: member.website.replace(/^https?:\/\//, ""),
-            href: member.website,
-            icon: <Globe size={16} />,
-            iconBg: "bg-[#41A9D8]",
-            iconColor: "text-white",
-            actionable: true,
-            external: true,
-          },
-        ]
+        {
+          label: "Website",
+          value: member.website.replace(/^https?:\/\//, ""),
+          href: member.website,
+          icon: <Globe size={16} />,
+          iconBg: "bg-[#41A9D8]",
+          iconColor: "text-white",
+          actionable: true,
+          external: true,
+        },
+      ]
       : []),
     ...(member.address
       ? [
-          {
-            label: "Address",
-            value: member.address,
-            icon: <MapPin size={16} />,
-            iconBg: "bg-[#41A9D8]",
-            iconColor: "text-white",
-            actionable: false,
-          },
-        ]
-      : []),
-    ...(member.linkedin
-      ? [
-          {
-            label: "LinkedIn",
-            value: "Voir le profil",
-            href: member.linkedin,
-            icon: <LinkedInIcon size={16} />,
-            iconBg: "bg-[#41A9D8]",
-            iconColor: "text-white",
-            actionable: true,
-            external: true,
-          },
-        ]
+        {
+          label: "Address",
+          value: member.address,
+          icon: <MapPin size={16} />,
+          iconBg: "bg-[#41A9D8]",
+          iconColor: "text-white",
+          actionable: false,
+        },
+      ]
       : []),
     {
       label: "P Prime",
@@ -200,9 +186,9 @@ export default function ContactPage({ member }: Props) {
           className="fixed top-6 left-6 z-50 pointer-events-none"
           style={{ opacity: logoOpacity }}
         >
-          <img 
-            src="/assets/logo-slogan.png" 
-            alt="P Prime Logo" 
+          <img
+            src="/assets/logo-slogan.png"
+            alt="P Prime Logo"
             className="h-10 w-auto object-contain drop-shadow-xl"
           />
         </motion.div>
@@ -338,7 +324,7 @@ export default function ContactPage({ member }: Props) {
         </motion.div>
 
         {/* Background Decorative Glow (Top Left) */}
-        <motion.div 
+        <motion.div
           className="absolute top-10 left-10 w-64 h-64 bg-indigo-500/20 rounded-full blur-[100px] -z-10"
           style={{ x: glowX, opacity: glowOpacity }}
         />
@@ -385,13 +371,12 @@ export default function ContactPage({ member }: Props) {
                     <p className="text-[9.5px] font-black text-slate-400/70 uppercase tracking-[0.18em] leading-none mb-1">
                       {row.label}
                     </p>
-                    <p className={`text-[13px] font-semibold leading-snug truncate ${
-                      row.label === "LinkedIn" ? "text-blue-600" : "text-slate-800"
-                    }`}>
+                    <p className={`text-[13px] font-semibold leading-snug truncate ${row.label === "LinkedIn" ? "text-blue-600" : "text-slate-800"
+                      }`}>
                       {row.value}
                     </p>
                   </div>
-                  <div className="flex items-center gap-2 flex-shrink-0">
+                  <div className="flex items-center gap-2 flex-shrink-0 relative z-10">
                     {row.whatsapp && (
                       <a
                         href={row.whatsapp}
@@ -399,7 +384,7 @@ export default function ContactPage({ member }: Props) {
                         rel="noopener noreferrer"
                         aria-label="WhatsApp"
                         onClick={(e) => e.stopPropagation()}
-                        className="w-10 h-10 rounded-full bg-[#25D366]/20 border border-[#25D366]/40 backdrop-blur-md text-[#25D366] flex items-center justify-center active:scale-90 transition-transform"
+                        className="w-10 h-10 rounded-full bg-[#25D366]/20 border border-[#25D366]/40 backdrop-blur-md text-[#25D366] flex items-center justify-center active:scale-95 transition-transform hover:bg-[#25D366]/30"
                       >
                         <WhatsAppIcon />
                       </a>
@@ -412,18 +397,24 @@ export default function ContactPage({ member }: Props) {
               );
 
               return row.actionable ? (
-                <motion.a
+                <motion.div
                   key={row.label}
-                  href={row.href}
-                  target={row.external ? "_blank" : undefined}
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-3.5 px-4 py-3.5 hover:bg-slate-50/80 active:bg-slate-100 transition-colors"
+                  onClick={() => {
+                    if (row.href) {
+                      if (row.external) {
+                        window.open(row.href, "_blank", "noopener,noreferrer");
+                      } else {
+                        window.location.href = row.href;
+                      }
+                    }
+                  }}
+                  className="group flex items-center gap-3.5 px-4 py-3.5 hover:bg-slate-50/80 active:bg-slate-100 transition-colors cursor-pointer"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.08 * i, duration: 0.45, ease }}
                 >
                   {content}
-                </motion.a>
+                </motion.div>
               ) : (
                 <motion.div
                   key={row.label}
@@ -450,30 +441,25 @@ export default function ContactPage({ member }: Props) {
             <p className="text-[9.5px] font-black uppercase tracking-[0.22em] text-slate-400/80 px-1 mb-3">
               Note
             </p>
-            <div className="bg-white rounded-2xl shadow-sm px-5 py-4 flex gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#41A9D8] text-white flex items-center justify-center flex-shrink-0">
-                <FileText size={16} />
-              </div>
-              <p className="text-[13px] text-slate-500 leading-relaxed italic pt-1">
+            <div className="bg-white rounded-2xl shadow-sm px-5 py-4 flex items-start gap-4">
+              <p className="flex-1 text-[13px] text-slate-500 leading-relaxed italic pt-1">
                 &ldquo;{member.notes}&rdquo;
               </p>
+              <div className="w-10 h-10 rounded-full bg-[#41A9D8]/20 border border-[#41A9D8]/40 backdrop-blur-md text-[#41A9D8] flex items-center justify-center flex-shrink-0">
+                <MessageSquare size={16} />
+              </div>
             </div>
           </motion.div>
         )}
 
         {/* ── Branding ── */}
         <motion.div
-          className="mt-14 mb-2 flex flex-col items-center gap-3 opacity-30 pointer-events-none grayscale"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.3 }}
+          className="mt-6 mb-6 flex flex-col items-center opacity-30 pointer-events-none grayscale"
+          initial={{ opacity: 0.5 }}
+          animate={{ opacity: 0.5 }}
           transition={{ delay: 0.7 }}
         >
-          <img
-            src="/assets/logo-slogan.png"
-            alt="Brand"
-            className="h-10 w-auto opacity-90 brightness-0 invert"
-          />
-          <p className="text-[8.5px] uppercase tracking-[0.3em] font-black text-slate-400">
+          <p className="text-[7.5px] uppercase tracking-[0.3em] font-black text-slate-400">
             Powered by Smart Solutions · P Prime
           </p>
         </motion.div>
@@ -494,8 +480,8 @@ export default function ContactPage({ member }: Props) {
             onClick={downloadVCard}
             className="relative w-full py-[15px] rounded-2xl text-white font-bold text-[13px] tracking-[0.18em] uppercase flex items-center justify-center gap-2.5 overflow-hidden"
             style={{
-              background: "linear-gradient(135deg, #0F1D36 0%, #1e3d6b 50%, #3730a3 100%)",
-              boxShadow: "0 8px 32px rgba(15,29,54,0.45), 0 2px 8px rgba(55,48,163,0.3)",
+              background: "linear-gradient(135deg, #41A9D8 0%, #012434 100%)",
+              boxShadow: "0 8px 32px rgba(1,36,52,0.35), 0 2px 8px rgba(65,169,216,0.2)",
             }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
