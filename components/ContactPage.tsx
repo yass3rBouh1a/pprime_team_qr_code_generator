@@ -107,7 +107,7 @@ export default function ContactPage({ member }: Props) {
       ? [
         {
           label: "Website",
-          value: member.website.replace(/^https?:\/\//, ""),
+          value: member.website.replace(/^https?:\/\/(www\.)?/, "www.").replace(/\/$/, ""),
           href: member.website,
           icon: <Globe size={16} />,
           iconBg: "bg-[#41A9D8]",
@@ -143,7 +143,7 @@ export default function ContactPage({ member }: Props) {
 
   const actions = [
     { label: "Call", href: `tel:${member.phone}`, icon: <Phone size={15} />, enabled: !!member.phone },
-    { label: "Message", href: `sms:${member.phone}`, icon: <MessageSquare size={15} />, enabled: !!member.phone },
+
     { label: "Email", href: `mailto:${member.email}`, icon: <Mail size={15} />, enabled: !!member.email },
     { label: "Website", href: member.website ?? "#", icon: <Globe size={15} />, enabled: !!member.website, external: true },
     { label: "LinkedIn", href: member.linkedin ?? "#", icon: <LinkedInIcon size={15} />, enabled: !!member.linkedin, external: true },
@@ -172,12 +172,13 @@ export default function ContactPage({ member }: Props) {
       >
         {/* Parallax background */}
         <motion.div
-          className="absolute inset-0 will-change-transform"
+          className="absolute inset-0 will-change-transform pointer-events-none"
           style={{ y: bgY, scale: bgScale }}
         >
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/assets/bg-contact.png')" }}
+          <img
+            src="/assets/bg-contact.png"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover object-center"
           />
         </motion.div>
 
@@ -193,24 +194,13 @@ export default function ContactPage({ member }: Props) {
           />
         </motion.div>
 
-
-
         {/* ── Hero center ── */}
         <motion.div
           className="relative z-10 flex-1 flex flex-col items-center justify-end px-6 pt-24 pb-28 gap-0"
-          style={{
-            opacity: heroContentOpacity,
-            y: heroContentY,
-            x: heroContentX
-          }}
+          initial={false}
         >
           {/* Avatar */}
-          <motion.div
-            className="relative mb-4"
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 200, damping: 18, delay: 0.1 }}
-          >
+          <div className="relative mb-4">
             {/* Ambient glow */}
             <div
               className="absolute inset-0 rounded-full blur-2xl opacity-60 scale-125"
@@ -246,80 +236,57 @@ export default function ContactPage({ member }: Props) {
             {/* Pulsing presence dot */}
             <div className="absolute bottom-1 right-1 z-20">
               <span className="relative flex w-4 h-4">
-                <span className="animate-ping absolute inset-0 rounded-full bg-emerald-400 opacity-70" />
+                <motion.span
+                  className="absolute inset-0 rounded-full bg-emerald-400"
+                  animate={{ 
+                    scale: [1, 2.2], 
+                    opacity: [0.5, 0] 
+                  }}
+                  transition={{ 
+                    duration: 2, 
+                    repeat: Infinity, 
+                    repeatType: "loop",
+                    ease: "easeOut" 
+                  }}
+                />
                 <span className="relative w-4 h-4 rounded-full bg-emerald-500 border-[2px] border-white shadow-lg" />
               </span>
             </div>
-          </motion.div>
+          </div>
 
           {/* Name */}
-          <motion.h1
-            className="text-[2.2rem] font-black text-white text-center leading-[1.1] tracking-tight"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25, duration: 0.6, ease }}
-          >
-            {member.firstName}{" "}
-            <span className="text-transparent bg-clip-text"
-              style={{
-                backgroundImage: "linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.55) 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              {member.lastName}
-            </span>
-          </motion.h1>
-
-          {/* Floating action icon circles — below name, horizontal row */}
-          <motion.div
-            className="flex flex-row gap-3 mt-4 justify-center"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.52, duration: 0.55, ease }}
-          >
-            {actions.map(({ label, href, icon, enabled, external }) =>
-              enabled ? (
-                <a
-                  key={label}
-                  href={href}
-                  target={external ? "_blank" : undefined}
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="w-11 h-11 rounded-full bg-white/15 border border-white/25 backdrop-blur-md text-white flex items-center justify-center active:scale-90 transition-transform hover:bg-white/25"
-                >
-                  {icon}
-                </a>
-              ) : null
-            )}
-          </motion.div>
+          <h1 className="text-[2.2rem] font-bold text-white text-center leading-[1.1] tracking-tight">
+            {member.firstName} {member.lastName}
+          </h1>
 
           {/* Job title */}
           {member.jobTitle && (
-            <motion.p
-              className="mt-3 text-[13px] text-white/65 font-medium text-center tracking-wide"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35, duration: 0.5, ease }}
-            >
+            <p className="mt-[5px] text-[15px] text-white/70 font-medium text-center tracking-wide">
               {member.jobTitle}
-            </motion.p>
+            </p>
           )}
 
-          {/* Company chip */}
-          {member.company && (
-            <motion.div
-              className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md"
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.44, duration: 0.45, ease }}
-            >
-              <Building2 size={10} className="text-white/60" />
-              <span className="text-[10px] font-semibold text-white/85 tracking-wider">
-                {member.company}
-              </span>
-            </motion.div>
-          )}
+          {/* Floating action icon circles — horizontal row */}
+          <div className="flex flex-row gap-6 mt-8 justify-center">
+            {actions.map(({ label, href, icon, enabled, external }) =>
+              enabled ? (
+                <div key={label} className="flex flex-col items-center gap-2">
+                  <a
+                    href={href}
+                    target={external ? "_blank" : undefined}
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="w-12 h-12 rounded-full bg-white/15 border border-white/25 backdrop-blur-md text-white flex items-center justify-center active:scale-90 transition-transform hover:bg-white/25"
+                  >
+                    {icon}
+                  </a>
+                  <span className="text-[9px] uppercase tracking-[0.12em] font-bold text-white/40">
+                    {label}
+                  </span>
+                </div>
+              ) : null
+            )}
+          </div>
 
         </motion.div>
 
@@ -367,6 +334,11 @@ export default function ContactPage({ member }: Props) {
             {rows.map((row, i) => {
               const content = (
                 <>
+                  <div className="flex items-center gap-2 flex-shrink-0 relative z-10">
+                    <div className="w-10 h-10 rounded-full bg-[#41A9D8]/20 border border-[#41A9D8]/40 backdrop-blur-md text-[#41A9D8] flex items-center justify-center">
+                      {row.icon}
+                    </div>
+                  </div>
                   <div className="flex-1 min-w-0 py-0.5">
                     <p className="text-[9.5px] font-black text-slate-400/70 uppercase tracking-[0.18em] leading-none mb-1">
                       {row.label}
@@ -389,9 +361,6 @@ export default function ContactPage({ member }: Props) {
                         <WhatsAppIcon />
                       </a>
                     )}
-                    <div className="w-10 h-10 rounded-full bg-[#41A9D8]/20 border border-[#41A9D8]/40 backdrop-blur-md text-[#41A9D8] flex items-center justify-center">
-                      {row.icon}
-                    </div>
                   </div>
                 </>
               );
@@ -490,7 +459,7 @@ export default function ContactPage({ member }: Props) {
             {/* Glass shine */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/8 to-transparent -skew-x-12 pointer-events-none" />
             <Plus size={17} strokeWidth={2.5} />
-            Save to Contacts
+            Add Contact
           </motion.button>
         </div>
       </div>
