@@ -261,7 +261,7 @@ export default function ContactPage({ member }: Props) {
 
           {/* Job title */}
           {member.jobTitle && (
-            <p className="mt-[8px] text-[1.4rem] text-white font-light text-center tracking-wide">
+            <p className="mt-[8px] text-[1.1rem] text-white font-light text-center tracking-wide">
               {member.jobTitle}
             </p>
           )}
