@@ -236,19 +236,7 @@ export default function ContactPage({ member }: Props) {
             {/* Pulsing presence dot */}
             <div className="absolute bottom-1 right-1 z-20">
               <span className="relative flex w-4 h-4">
-                <motion.span
-                  className="absolute inset-0 rounded-full bg-emerald-400"
-                  animate={{
-                    scale: [1, 2.2],
-                    opacity: [0.5, 0]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    ease: "easeOut"
-                  }}
-                />
+                <span className="animate-ping absolute inset-0 rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative w-4 h-4 rounded-full bg-emerald-500 border-[2px] border-white shadow-lg" />
               </span>
             </div>
@@ -261,7 +249,7 @@ export default function ContactPage({ member }: Props) {
 
           {/* Job title */}
           {member.jobTitle && (
-            <p className="mt-[8px] text-[1.1rem] text-white font-light text-center tracking-wide">
+            <p className="mt-[8px] text-[0.85rem] text-white font-light text-center tracking-wide">
               {member.jobTitle}
             </p>
           )}
