@@ -161,7 +161,7 @@ export default function ContactPage({ member }: Props) {
   }
 
   return (
-    <div className="bg-[#07101f] min-h-screen">
+    <div className="bg-[#012434] min-h-screen">
 
       {/* ══════════════════════════════════════
           HERO — full-viewport cinematic section
@@ -178,13 +178,13 @@ export default function ContactPage({ member }: Props) {
           <img
             src="/assets/bg-contact.png"
             alt=""
-            className="absolute inset-0 w-full h-full object-cover object-center"
+            className="absolute top-0 right-0 w-full h-auto object-contain object-right-top"
           />
         </motion.div>
 
         {/* ── Top bar Logo ── */}
         <motion.div
-          className="fixed top-6 left-6 z-50 pointer-events-none"
+          className="fixed top-6 left-3 z-50 pointer-events-none"
           style={{ opacity: logoOpacity }}
         >
           <img
@@ -196,7 +196,7 @@ export default function ContactPage({ member }: Props) {
 
         {/* ── Hero center ── */}
         <motion.div
-          className="relative z-10 flex-1 flex flex-col items-center justify-end px-6 pt-24 pb-28 gap-0"
+          className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 pt-24 pb-12 gap-0"
           initial={false}
         >
           {/* Avatar */}
@@ -238,15 +238,15 @@ export default function ContactPage({ member }: Props) {
               <span className="relative flex w-4 h-4">
                 <motion.span
                   className="absolute inset-0 rounded-full bg-emerald-400"
-                  animate={{ 
-                    scale: [1, 2.2], 
-                    opacity: [0.5, 0] 
+                  animate={{
+                    scale: [1, 2.2],
+                    opacity: [0.5, 0]
                   }}
-                  transition={{ 
-                    duration: 2, 
-                    repeat: Infinity, 
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
                     repeatType: "loop",
-                    ease: "easeOut" 
+                    ease: "easeOut"
                   }}
                 />
                 <span className="relative w-4 h-4 rounded-full bg-emerald-500 border-[2px] border-white shadow-lg" />
@@ -255,13 +255,13 @@ export default function ContactPage({ member }: Props) {
           </div>
 
           {/* Name */}
-          <h1 className="text-[2.2rem] font-bold text-white text-center leading-[1.1] tracking-tight">
+          <h1 className="text-[1.55rem] font-bold text-white text-center leading-[1.1] tracking-tight">
             {member.firstName} {member.lastName}
           </h1>
 
           {/* Job title */}
           {member.jobTitle && (
-            <p className="mt-[5px] text-[15px] text-white/70 font-medium text-center tracking-wide">
+            <p className="mt-[8px] text-[1.4rem] text-white font-light text-center tracking-wide">
               {member.jobTitle}
             </p>
           )}
@@ -280,7 +280,7 @@ export default function ContactPage({ member }: Props) {
                   >
                     {icon}
                   </a>
-                  <span className="text-[9px] uppercase tracking-[0.12em] font-bold text-white/40">
+                  <span className="text-[9px] uppercase tracking-[0.12em] font-bold text-white">
                     {label}
                   </span>
                 </div>
