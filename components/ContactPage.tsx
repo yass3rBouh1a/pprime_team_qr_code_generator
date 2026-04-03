@@ -236,7 +236,7 @@ export default function ContactPage({ member }: Props) {
             {/* Pulsing presence dot */}
             <div className="absolute bottom-1 right-1 z-20">
               <span className="relative flex w-4 h-4">
-                <span className="animate-ping absolute inset-0 rounded-full bg-emerald-400 opacity-75" />
+                <span className="animate-ping absolute inset-0 rounded-full bg-emerald-400 opacity-75" style={{ animationDuration: "2.5s" }} />    
                 <span className="relative w-4 h-4 rounded-full bg-emerald-500 border-[2px] border-white shadow-lg" />
               </span>
             </div>
