@@ -190,7 +190,7 @@ export default function ContactPage({ member }: Props) {
           <img
             src="/assets/logo-slogan.png"
             alt="P Prime Logo"
-            className="h-16 w-auto object-contain drop-shadow-xl"
+            className="h-11 w-auto object-contain drop-shadow-xl"
           />
         </motion.div>
 
@@ -210,7 +210,7 @@ export default function ContactPage({ member }: Props) {
             />
 
             {/* Animated gradient ring */}
-            <div className="relative w-20 h-20 rounded-full p-[2.5px] shadow-2xl"
+            <div className="relative w-24 h-24 rounded-full p-[2.5px] shadow-2xl"
               style={{
                 background: "linear-gradient(135deg, #2ebd59, #34d399, #06b6d4, #6366f1)",
               }}
