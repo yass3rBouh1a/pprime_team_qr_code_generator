@@ -1,49 +1,59 @@
-import fs from "fs";
-import path from "path";
+import { getStore } from "@netlify/blobs";
 import { TeamMember } from "./types";
+import seedData from "@/data/members.json";
 
-const DATA_DIR = path.join(process.cwd(), "data");
-const DATA_FILE = path.join(DATA_DIR, "members.json");
+const STORE_NAME = "members";
+const MEMBERS_KEY = "all-members";
+const SEEDED_KEY = "seeded";
 
-function ensureDataFile() {
-  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-  if (!fs.existsSync(DATA_FILE)) fs.writeFileSync(DATA_FILE, "[]", "utf-8");
+function getBlob() {
+  return getStore({ name: STORE_NAME, consistency: "strong" });
 }
 
-export function getMembers(): TeamMember[] {
-  ensureDataFile();
-  const raw = fs.readFileSync(DATA_FILE, "utf-8");
-  return JSON.parse(raw) as TeamMember[];
+export async function getMembers(): Promise<TeamMember[]> {
+  const store = getBlob();
+  const data = await store.get(MEMBERS_KEY, { type: "json" });
+  if (data) return data as TeamMember[];
+
+  // Seed from initial data on first access
+  const seeded = await store.get(SEEDED_KEY, { type: "text" });
+  if (!seeded && seedData.length > 0) {
+    await store.setJSON(MEMBERS_KEY, seedData);
+    await store.set(SEEDED_KEY, "true");
+    return seedData as TeamMember[];
+  }
+  return [];
 }
 
-export function getMember(id: string): TeamMember | null {
-  return getMembers().find((m) => m.id === id) ?? null;
+export async function getMember(id: string): Promise<TeamMember | null> {
+  const members = await getMembers();
+  return members.find((m) => m.id === id) ?? null;
 }
 
-export function saveMembers(members: TeamMember[]): void {
-  ensureDataFile();
-  fs.writeFileSync(DATA_FILE, JSON.stringify(members, null, 2), "utf-8");
+export async function saveMembers(members: TeamMember[]): Promise<void> {
+  const store = getBlob();
+  await store.setJSON(MEMBERS_KEY, members);
 }
 
-export function addMember(member: TeamMember): void {
-  const members = getMembers();
+export async function addMember(member: TeamMember): Promise<void> {
+  const members = await getMembers();
   members.push(member);
-  saveMembers(members);
+  await saveMembers(members);
 }
 
-export function updateMember(id: string, data: Partial<TeamMember>): TeamMember | null {
-  const members = getMembers();
+export async function updateMember(id: string, data: Partial<TeamMember>): Promise<TeamMember | null> {
+  const members = await getMembers();
   const idx = members.findIndex((m) => m.id === id);
   if (idx === -1) return null;
   members[idx] = { ...members[idx], ...data };
-  saveMembers(members);
+  await saveMembers(members);
   return members[idx];
 }
 
-export function deleteMember(id: string): boolean {
-  const members = getMembers();
+export async function deleteMember(id: string): Promise<boolean> {
+  const members = await getMembers();
   const filtered = members.filter((m) => m.id !== id);
   if (filtered.length === members.length) return false;
-  saveMembers(filtered);
+  await saveMembers(filtered);
   return true;
 }

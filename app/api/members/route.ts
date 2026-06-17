@@ -9,7 +9,7 @@ const AVATAR_COLORS = [
 ];
 
 export async function GET() {
-  const members = getMembers();
+  const members = await getMembers();
   return NextResponse.json(members);
 }
 
@@ -30,6 +30,6 @@ export async function POST(req: NextRequest) {
     avatarColor: AVATAR_COLORS[Math.floor(Math.random() * AVATAR_COLORS.length)],
     createdAt: new Date().toISOString(),
   };
-  addMember(member);
+  await addMember(member);
   return NextResponse.json(member, { status: 201 });
 }
